@@ -1,0 +1,17 @@
+<!DOCTYPE ejb-jar PUBLIC '-//Sun Microsystems, Inc.//DTD Enterprise JavaBeans 2.0//EN'
+        ' http://java.sun.com/dtd/ejb-jar_2_0.dtd'>
+
+<ejb-jar>
+    <enterprise-beans>
+        <session>
+            <ejb-name>HelloBean</ejb-name>
+            <home>masteringEjb30.example.HelloHome</home>
+            <remote>masteringEjb30.example.Hello</remote>
+            <local-home>masteringEjb30.example.HelloLocalHome</local-home>
+            <local>masteringEjb30.example.HelloLocal</local>
+            <ejb-class>masteringEjb30.example.HelloBean</ejb-class>
+            <session-type>Stateless</session-type>
+            <transaction-type>Container</transaction-type>
+        </session>
+    </enterprise-beans>
+</ejb-jar>

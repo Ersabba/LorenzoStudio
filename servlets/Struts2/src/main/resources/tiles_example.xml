@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<!--
+  - This file is included by the struts.xml file as an example
+  - of how to break up the configuration file into multiple files.
+-->
+<struts>
+    <package name="tiles_example" namespace="/tiles_example" extends="struts-default">
+
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+        </result-types>
+
+        <action name="HelloWorld" class="tiles.actions.HelloWorld">
+            <result type="tiles">hello</result>
+        </action>
+
+        <action name="HelloWorldMenu" method="generateMenu" class="tiles.actions.HelloWorld">
+            <result>/tiles/test.jsp</result>
+        </action>
+
+        <action name="HelloWorldMenu2">
+            <result>/tiles/test.jsp</result>
+        </action>
+
+        <action name="HelloWorld2" class="tiles.actions.HelloWorld">
+            <result type="tiles">hello2</result>
+        </action>
+
+        <action name="HelloWorld3" class="tiles.actions.HelloWorld">
+            <result type="tiles">hello3</result>
+        </action>
+
+        <action name="HelloWorld4" class="tiles.actions.HelloWorld">
+            <result type="tiles">hello4</result>
+        </action>
+
+        <action name="Login_*" method="{1}" class="tiles.actions.Login">
+            <result name="input">/tiles/Login.jsp</result>
+            <result type="redirectAction">Menu</result>
+        </action>
+
+        <action name="*" class="tiles.actions.ExampleSupport">
+            <result>/tiles/{1}.jsp</result>
+        </action>
+
+        <!-- Add additional "example" package actions here. -->
+
+    </package>
+</struts>

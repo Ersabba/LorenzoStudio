@@ -1,0 +1,7 @@
+<weblogic-ejb-jar>
+    <weblogic-enterprise-bean>
+        <ejb-name>HelloBean</ejb-name>
+        <local-jndi-name>HelloHomeLocal</local-jndi-name>
+        <jndi-name>HelloHome</jndi-name>
+    </weblogic-enterprise-bean>
+</weblogic-ejb-jar>

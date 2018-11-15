@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+    <!--
+             For the purposes of the book, we will leave devMode set to true.  This
+             allows several things to occur including provision of debugging level information
+             on error pages as well as reloading of various resources with each request.
+ -->
+
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.custom.i18n.resources" value="global,mgsebundle" />
+    <constant name="struts.convention.exclude.parentClassLoader" value="false" />
+    <constant name="struts.convention.action.fileProtocols" value="jar,vfsfile,vfszip,zip" />
+    <constant name="struts.convention.action.includeJars" value=".*?\.jar(!/|/)?" />
+    <constant name="struts.ui.theme" value="simple" />
+
+    <!--
+       You can define packages directly in this file, but its probably best
+          to modularize the configuration files with separate xml files for each
+          package.  Ulitmately its all the same because the include element, seen
+          below, pulls the included configuration document directly in to the
+          primary document.  The only thing to consider is that a referenced
+          element must have been declared above the referring element.
+   -->
+
+    <!--
+            This is the menu action that will allow the reader to see the different
+            samples actions from the different chapters in a menu format.  We declare
+            it here, in the root namespace, because its not really related to any of the
+            specific examples or chapters, its just a kind of utility for the whole
+            application.
+    -->
+    <package name="default" namespace="/" extends="struts-default">
+
+<!--        <default-action-ref name="index"/>
+        <action name="index">
+            <result type="redirectAction">
+                <param name="namespace">example</param>
+                <param name="actionName">HelloWorld</param>
+            </result>
+        </action>-->
+
+        <action name="Menu">
+            <result>/menu/Menu.jsp</result>
+        </action>
+
+    </package>
+
+    <include file="tiles_example.xml"/>
+    <include file="manning/chapterTwo/chapterTwo.xml"/>
+    <include file="manning/chapterThree/chapterThree.xml"/>
+    <include file="mgse_struts.xml"/>
+    <!--<include file="manning/chapterThree/chapterThree.xml"/>
+    <include file="manning/chapterThree/objectBacked/chapterThree.xml"/>
+    <include file="manning/chapterThree/modelDriven/chapterThree.xml"/>
+    <include file="manning/chapterFour/chapterFour.xml"/>
+    <include file="manning/chapterFive/chapterFive.xml"/>
+    <include file="manning/chapterSix/chapterSix.xml"/>
+    <include file="manning/chapterSeven/chapterSeven.xml"/>
+    <include file="manning/chapterEight/chapterEight.xml"/>
+    <include file="manning/chapterNine/chapterNine.xml"/>
+    <include file="manning/chapterTen/chapterTen.xml"/>
+    <include file="manning/chapterEleven/chapterEleven.xml"/>  -->
+
+
+
+</struts>

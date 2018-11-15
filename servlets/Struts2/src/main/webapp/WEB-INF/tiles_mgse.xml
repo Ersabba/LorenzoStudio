@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+    <definition name="baseLayout_mgse" template="/common_mgse/frameset.jsp">
+        <put-attribute name="title" value="Mgse" />
+
+        <put-attribute name="banner" value="/tiles/header.jsp"/>
+        <put-attribute name="menu" value="/tiles/menu.jsp"/>
+        <put-attribute name="body" value="/common_mgse/welcome.jsp"/>
+    </definition>
+
+<!--    <tiles:put name='title'  content='Mcrz' direct='true'/>
+    <tiles:put name='banner' content='<%=pathJSP%>banner.jsp'/>
+    <tiles:put name='menu'   content='/generate_menu.do'/>
+    <tiles:put name='body'   content='/common/welcome.jsp'/>-->
+
+</tiles-definitions>

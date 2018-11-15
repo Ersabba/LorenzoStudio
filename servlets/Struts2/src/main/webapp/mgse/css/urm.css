@@ -1,0 +1,303 @@
+body {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: Black;
+	margin:0px;
+	margin-right:2px;
+	margin-left:2px;
+}
+
+a:link, a:visited {
+	text-decoration: none;
+	color:#003366
+}
+td.white a:link, td.white a:visited {
+	text-decoration: none;
+	color: white
+}
+a.white{
+	text-decoration: none;
+	color: white;
+}
+
+.white {
+	text-decoration: none;
+	background-color: #003366;
+	color: white;
+	width: 160px;
+}
+
+td.menu a:hover{
+	background-color: #dddddd;
+	width:100%
+}
+
+td.menu:hover{
+	background-color: #dddddd;
+	width:100%
+}
+
+/*
+A:link
+{
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	color: #990000;
+	text-decoration: none;
+	font-size : 11px;
+}
+A:Visited
+{
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	color: gray;
+	text-decoration: none;
+	font-size : 11px;
+}
+A:Active
+{
+	color: grey;
+	text-decoration: underline;
+	font-size : 11px;
+}
+A:Hover
+{
+	color: Red;
+	text-decoration: none;
+	font-size : 11px;
+}
+
+*/
+.title {
+	color: #000066;
+	font-weight: bold;
+	background-color: #FFC74F;
+	font-size: 11px;
+	text-align: center;
+}
+.tblContent {
+	font-size: 11px;
+	text-align: center;
+}
+.tblSwapColor {
+	background-color: #FFFFFF;
+}
+.tblColorSelected {
+	background-color: #FF0000;
+}
+td {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: Black;
+}
+
+td.left1 {
+        font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+        font-size: 10px;
+        background-color: #000063;
+	color: #FFC74F;
+}
+
+td.left3 {
+        font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+        font-size: 11px;
+        font-weight: bold;
+         background-color: #FFC74F;
+        text-align: center;
+	color: #000063;
+}
+
+
+td.left1b {
+        font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+        font-size: 10px;
+        background-color: #FFC74F;
+        color: #000063;
+}
+
+td.left2 {
+        font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+        font-size: 10px;
+        background-color: #000063;
+        color: #FFFFFF;
+}
+
+td.task {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 11px;
+		font-weight: bold;
+        color: #FFFFFF;
+        text-transform: uppercase;
+        }
+
+input {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	/*background-color: #FFFFFF;*/
+    border-style: groove;
+	border: thin;
+    bordercolor: #FFC74F;
+}
+
+.headerTable {
+	font-family: Arial,Verdana, Geneva, Helvetica, sans-serif;
+	font-size: 10px;
+    color: #000000;
+    font-weight: bold;
+    text-align: center;
+    background-color: #FF9900 ;
+    
+}
+
+.formLogin {
+	text-align: right;
+	vertical-align: top;
+}
+
+.header {
+	text-align: left;
+	vertical-align: top;
+	font-size: 9px;
+    font-weight: bold;
+    color: #252424;
+    text-decoration: underline
+}
+
+.errore {
+	vertical-align: top;
+	font-size: 10px;
+    color: #F81616;
+}
+
+.errorCode {
+	font-weight: bold;
+	color: #FF0000;
+}
+
+.okCode {
+	font-weight: bold;
+	color: #008000;
+}
+
+.redLabel{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FF0000;
+}
+
+.formgeneral {
+	text-align: left;
+	font-style: italic;
+}
+.formClient {
+	text-align: center;
+}
+
+option, select {
+        font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+        font-size: 10px;
+        border: thin;
+        bordercolor: #000000;
+}
+
+.textform
+{
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	color: #450909;
+	font-size : 10px;
+	font-weight : bold;
+	background-color: #FFFFFF;
+    border-style: groove;
+	border: thin;
+}
+
+.button {
+    font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	background-color: #FFC74F;
+	border: thin;
+	color: #000063;
+}
+.buttonWhite {
+	color: #000063;
+    background-color: #FFFFFF;
+    border-style: groove;
+    border-width: 0px;
+    alignment: center;
+}
+
+.buttonRed {
+	color: #000000;
+	background-color: #f44336;
+	border-width: 2px;
+    alignment: center;
+	height:20px;
+	width:120px;
+}
+
+.buttonGreen {
+	color: #000000;
+	background-color: #4CAF50;
+	border-width: 2px;
+	alignment: center;
+	height:20px;
+	width:120px;
+}
+
+.flowsTable {
+	border-collapse: collapse;
+	background-color: #EEEEEE;
+
+	border: 0;
+	border-spacing: 0;
+	width: 100%;
+	alignment: center;
+	table-layout:fixed;
+
+}
+
+.flowsTable th {
+	background: #e88127;
+	font-size: 11px;
+	text-align: left;
+	height: 15px;
+}
+
+.flowsTable tr {
+	border: none;
+	height: 32px;
+}
+
+.flowsTable td {
+	border-bottom: solid 1px #dddddd;
+	border-top: solid 1px #dddddd;
+	text-align: left;
+	padding: 0;
+}
+
+.flowsTable .tdToRight {
+	text-align: right;
+}
+
+.flowsTable input[type=text] {
+	width:95%;
+}
+
+.submitForm  {
+	align: center;
+	background-color: #e88127;
+}
+
+.border_top {
+	border-top:3px solid #9CABBB;
+	background: #eeeeee;
+}
+
+.border_bottom {
+	border-top: solid 1px #dddddd;
+	border-bottom:3px solid #9CABBB;
+	background: #eeeeee;
+}
+
+
+
+

@@ -1,0 +1,100 @@
+.banner_acea{ /* ACEA - Produzione   */		
+		    /*gradient background color( #0A3154 = rgb(10,49,84) blue scuro) #1A5DA0=rgb(26,93,160) blu chiaro */
+    background: #0A3154; /* Old browsers */   
+    background: -moz-linear-gradient(left,  #0A3154 1%, #1A5DA0 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(1%,#0A3154), color-stop(100%,#1A5DA0)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left,  #0A3154 1%,#1A5DA0 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left,  #0A3154 1%,#1A5DA0 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left,  #0A3154 1%,#1A5DA0 100%); /* IE10+ */
+    background: linear-gradient(to right,  #0A3154 1%,#1A5DA0 100%); /* W3C */
+    background-color: #0A3154;;/* IE5-9 - blue scuro a tinta unica */	  
+
+   /* #0A3154 = rgb(10,49,84) = blue di sinistra,  #1A5DA0 = rgb(26,93,160) = blue chiaro di sinistra */
+
+}		
+		
+.banner_empty{/* Utilities - Produzione  */
+	/*gradient background color( #0A3154 = rgb(10,49,84) blue scuro) #1A5DA0=rgb(26,93,160) blu chiaro */
+    background: #0A3154; /* Old browsers */
+    background: -moz-linear-gradient(left,  #0A3154 1%, #1A5DA0 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(1%,#0A3154), color-stop(100%,#1A5DA0)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left,  #0A3154 1%,#1A5DA0 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left,  #0A3154 1%,#1A5DA0 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left,  #0A3154 1%,#1A5DA0 100%); /* IE10+ */
+    background: linear-gradient(to right,  #0A3154 1%,#1A5DA0 100%); /* W3C */
+    background-color: #0A3154;;/* IE5-9 - blue scuro a tinta unica */
+   
+}		
+		
+		
+.banner_empty_test{ /* Utilities - Test  */
+	/* gradiente dal blue scuro al Marron(#800000) per IE+10, Chrome e FF, tinta unica blue chiaro old browsers  */
+	
+    /*gradient background color( #0A3154 = rgb(10,49,84) blue scuro) #800000=rgb(128,0,0) Marron(da provare anche questo #5b442b) */
+    background:  #1A5DA0; /* Old browsers */
+    background: -moz-linear-gradient(left,  #0A3154 1%, #800000 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(1%,#0A3154), color-stop(100%,#800000)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left,  #0A3154 1%,#800000 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left,  #0A3154 1%,#800000 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left,  #0A3154 1%,#800000 100%); /* IE10+ */
+    background: linear-gradient(to right,  #0A3154 1%,#800000 100%); /* W3C */
+    background-color: #1A5DA0; /* IE5-9 - blue chiaro per distinguerlo dal blue scuro dell'ambiente di produzione */
+    
+}	
+
+.banner_acea_test{ /* ACEA - Test  */
+	/* gradiente dal blue scuro al Marron(#800000) per IE+10, Chrome e FF, tinta unica blue chiaro old browsers  */   
+   
+    background:  #1A5DA0; /* Old browsers */ 
+    background: -moz-linear-gradient(left,  #0A3154 1%, #800000 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(1%,#0A3154), color-stop(100%,#800000)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left,  #0A3154 1%,#800000 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left,  #0A3154 1%,#800000 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left,  #0A3154 1%,#800000 100%); /* IE10+ */
+    background: linear-gradient(to right,  #0A3154 1%,#800000 100%); /* W3C */   
+    background-color: #1A5DA0; /* IE5-9 - blue chiaro per distinguerlo dal blue scuro dell'ambiente di produzione */
+  }			
+		
+#logoBannerLeftId{
+	margin-top: 0px; 
+	margin-bottom: 10px; 
+	margin-right: 10px; 
+	margin-left: 10px;
+}		
+		
+#bannerCenterTextId{
+	font-size:medium; 
+	color:White; 
+	visibility: hidden; 
+	width: 100%;
+	margin-left:-60px; /* margine di larghezza uguale al logo di sinistra per centrare il div */
+}
+
+#logoBannerRightId{
+	margin-top:-15px; 
+	margin-bottom: 10px; 
+	margin-right: 10px;  
+	margin-left: 10px;
+}
+ 
+
+body {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: Black;
+	margin: 0px;
+}
+
+td {
+    font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: Black;
+}
+
+/* valutare se impostare lo stile solo al #serverClock  */ 
+input {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	background-color: #FFC74F;
+	border: thin;
+}		
