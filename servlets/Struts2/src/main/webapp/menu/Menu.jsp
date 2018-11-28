@@ -22,6 +22,7 @@
       <li><a href="<s:url action='tiles_example/HelloWorld'/>">Tiles Example Hello World</a></li>
       <li><a href="<s:url action='mgse/MenuGSE'/>">MENU GSE</a></li>
       <li><a href="<s:url action='datatable'/>">DataTable</a></li>
+      <li><a href="<s:url action='modificatrps'/>">ModificaTRPS</a></li>
       <li><a href="<s:url action='oldejb/Ejb20Test'/>">Test EJB 2.0 </a></li>
 
       <!--

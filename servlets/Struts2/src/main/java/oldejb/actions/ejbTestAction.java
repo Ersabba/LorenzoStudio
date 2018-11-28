@@ -55,26 +55,20 @@ public class ejbTestAction {
 
         Context context = null;
         try {
-
-            /*
-             * Obtain the JNDI initial context.
+            /*Obtain the JNDI initial context.
              *
-             * The initial context is a starting point for
-             * connecting to a JNDI tree. We choose our JNDI
-             * driver, the network location of the server, etc.
-             * by passing in the environment properties.
+             * The initial context is a starting point for connecting to a JNDI tree. We choose our JNDI
+             * driver, the network location of the server, etc.by passing in the environment properties.
              */
             context = new InitialContext(environment);
 
             /*
-             * Get a reference to the home object - the
-             * factory for Hello EJB Objects
+             * Get a reference to the home object - the factory for Hello EJB Objects
              */
             Object obj = context.lookup("HelloHome");
 
             /*
-             * Home objects are RMI-IIOP objects, and so
-             * they must be cast into RMI-IIOP objects
+             * Home objects are RMI-IIOP objects, and so they must be cast into RMI-IIOP objects
              * using a special RMI-IIOP cast.
              *
              * See Appendix A for more details on this.
@@ -87,8 +81,7 @@ public class ejbTestAction {
             Hello hello = home.create();
 
             /*
-             * Call the hello() method on the EJB object. The
-             * EJB object will delegate the call to the bean,
+             * Call the hello() method on the EJB object. The EJB object will delegate the call to the bean,
              * receive the result, and return it to us.
              *
              * We then print the result to the screen.

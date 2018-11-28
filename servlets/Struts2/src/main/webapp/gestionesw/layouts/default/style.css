@@ -1,0 +1,329 @@
+body {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: Black;
+	margin: 0px;
+}
+
+a:link,a:visited {
+	text-decoration: none;
+	color: #003366
+}
+
+td.menu a:hover {
+	background-color: #dddddd;
+	width: 100%
+}
+
+td.white a:link,td.white a:visited {
+	text-decoration: none;
+	color: white
+}
+
+table.righealterne tr.alterna td {
+	background-color: #003366;
+	color: white
+}
+
+a.white {
+	text-decoration: none;
+	color: white;
+}
+
+.white {
+	text-decoration: none;
+	background-color: #003366;
+	color: white;
+	width: 160px;
+}
+
+/*
+body {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: Black;
+}
+A:link
+{
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	color: #990000;
+	text-decoration: none;
+	font-size : 11px;
+}
+A:Visited
+{
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	color: gray;
+	text-decoration: none;
+	font-size : 11px;
+}
+A:Active
+{
+	color: grey;
+	text-decoration: underline;
+	font-size : 11px;
+}
+A:Hover
+{
+	color: Red;
+	text-decoration: none;
+	font-size : 11px;
+}
+*/
+.title {
+	color: #000066;
+	font-weight: bold;
+	background-color: #FFC74F;
+	font-size: 11px;
+	text-align: center;
+}
+
+.tblContent {
+	font-size: 11px;
+	text-align: center;
+}
+
+.tblSwapColor {
+	background-color: #FFFFFF;
+}
+
+.tblColorSelected {
+	background-color: #FF0000;
+}
+
+td {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: Black;
+}
+
+td.left1 {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	background-color: #000063;
+	color: #FFC74F;
+}
+
+td.left3 {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	background-color: #FFC74F;
+	text-align: center;
+	color: #000063;
+}
+
+td.left1b {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	background-color: #FFC74F;
+	color: #000063;
+}
+
+td.left2 {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	background-color: #000063;
+	color: #FFFFFF;
+}
+
+td.task {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+input {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	background-color: #FFFFFF;
+	border-style: groove;
+	border :     thin;
+	bordercolor: #FFC74F;
+}
+
+.headerTable {
+	font-family: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #000000;
+	font-weight: bold;
+	text-align: center;
+	background-color: #FF9900;
+}
+
+.formLogin {
+	text-align: right;
+	vertical-align: top;
+}
+
+.header {
+	text-align: left;
+	vertical-align: top;
+	font-size: 9px;
+	font-weight: bold;
+	color: #252424;
+	text-decoration: underline
+}
+
+.errore {
+	vertical-align: top;
+	font-size: 10px;
+	color: #F81616;
+}
+
+.errorCode {
+	font-weight: bold;
+	color: #FF0000;
+}
+
+.formgeneral {
+	text-align: left;
+	font-style: italic;
+}
+
+.formClient {
+	text-align: center;
+}
+
+option,select {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	border: thin;
+	bordercolor:#000000;
+}
+
+.textform {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	color: #450909;
+	font-size: 10px;
+	font-weight: bold;
+	background-color: #FFFFFF;
+	border-style: groove;
+	border : thin;
+}
+
+.button {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	background-color: #003366;
+	border: none;
+	color: white;
+}
+
+.buttonWhite {
+	color: #000063;
+	background-color: #FFFFFF;
+	border-style: groove;
+	border-width: 0px;
+}
+
+.formSubmit {
+	text-align: right;
+}
+
+table.calendar {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 0.8em;
+	border-collapse: collapse;
+	background-color: white;
+	border: solid #999999 1px;
+	background-color: white;
+	width: 200px;
+	text-align: center;
+	/*prevent user from selecting text in Mozilla & Safari - check calendar constructor for IE code)*/
+	-moz-user-select: none;
+	/*-khtml-user-select: none;*/
+}
+
+table.calendar input,table.calendar select {
+	font-size: 10px;
+}
+
+table.calendar td {
+	border: 0;
+	font-size: 10px;
+	text-align: center;
+}
+
+div.mainheading {
+	margin: 2px;
+}
+
+table.caldayheading {
+	border-collapse: collapse;
+	cursor: pointer;
+	empty-cells: show;
+	margin: 0 6px 0 6px;
+}
+
+table.caldayheading td {
+	border: solid #CCCCCC 1px;
+	text-align: left;
+	color: #0054E3;
+	font-weight: bold;
+	width: 22px; /*should match calendar cell's width*/
+}
+
+table.caldayheading td.wkhead {
+	border-right: double #CCCCCC 3px;
+}
+
+table.calcells {
+	border-collapse: collapse;
+	cursor: pointer;
+	margin: 0 6px 0 6px;
+}
+
+table.calcells td {
+	border: solid #CCCCCC 1px;
+	vertical-align: top;
+	text-align: left;
+	font-weight: bold;
+	width: 22px;
+	height: 20px; /*IE doesn't like ems*/
+}
+
+table.calcells td div {
+	padding: 1px;
+	margin: 0;
+}
+
+table.calcells td.wkhead {
+	background-color: white;
+	text-align: center;
+	border-right: double #CCCCCC 3px;
+	color: #0054E3;
+}
+
+table.calcells td.wkday {
+	background-color: #DDDDDD;
+}
+
+table.calcells td.wkend {
+	background-color: #DDDDDD;
+}
+
+table.calcells td.curdate {
+	
+}
+
+table.calcells td.cell_selected {
+	background-color: #99CCFF;
+	color: black;
+}
+
+table.calcells td.notmnth {
+	background-color: #FFFFFF;
+	color: #CCCCCC;
+}
+
+table.calcells td.notallowed {
+	background-color: white;
+	color: #EEEEEE;
+	font-style: italic;
+}
+
+table.calcells td.hover {
+	background-color: #999999;
+}
