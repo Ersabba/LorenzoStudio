@@ -16,42 +16,140 @@
 
     function confirmSubmit() {
 
-        $('input[type=text],input[type=file]').each(
+        var tipoInstallazione,ambiente, codice;
+        var indexRow=0,indexColumn=0;
+        var files=new Array(maxFiles);
+        var control = true;
+        var reg = new RegExp('^\\d+$');
+        var maxFiles=<%=MaxFiles%>;
+
+        $('input[type=text],input[type=file],select').each(
 			function(index){
 				var input = $(this);
 
                 var id = input.parent().parent().attr("id");
 
                 console.log("ID del TAG TR:"+id);
+                console.log("Index:"+index);
 
-                /*if(id||!id.substring(0, 10).localeCompare("hiddenRow")){
-					alert('Type:' + input.attr('type') + '  Name:' + input.attr('name') + '  Value:' + input.val());
-                }*/
-                if(!id)
-                	alert('Type:' + input.attr('type') + '  Name:' + input.attr('name') + '  Value:' + input.val());
+                // Evito le righe nascoste che sono dotate di ID, le righe della tabella sono senza ID
+                if(!id) {
+                    alert('Type:' + input.attr('type') + '  Name:' + input.attr('name') + '  Value:' + input.val());
+
+                    // Controllo sul null
+                    if(!input.val()){
+                        alert(input.attr('name')+" non può essere vuoto!");
+                        input.css({'background-color': 'red'});
+                        control =false;
+                        return control;
+					}
+
+					// Controllo sul formato dei campi inseritii
+					switch(input.attr('name')){
+						case "TipoInstallazione":
+							tipoInstallazione=input.val();
+							break;
+						case "Codice":
+							codice=input.val();
+							break;
+						case "Ambiente":
+							ambiente=input.val();
+							break;
+						case "checkSum": // 0
+                            if(!reg.test(input.val())) {
+                                alert("La checksum deve essere un valore numerico");
+                                input.css({'background-color': 'red'});
+                                control =false;
+                                return control;
+							}
+							break;
+						case "minValue": // 1
+                            if(reg.test(input.val())){
+                                if(checkOverlap(input,files,indexRow)){
+                                    var row = new Array(2);
+                                    files[indexRow]=row;
+                                    row[indexColumn]=input;
+                                    indexColumn++;
+                                }
+                                else {
+                                    alert("L'estremo dell'intervallo ricade in uno degli intervalli precedentemente definiti");
+                                    control =false;
+                                    return control;
+                                }
+                            }
+                            else {
+                                alert("L'estremo inferiore dell'intervallo deve essere un valore numerico");
+                                input.css({'background-color': 'red'});
+                                control =false;
+                                return control;
+                            }
+							break;
+
+						case "maxValue": // 2
+                            if(reg.test(input.val())){
+
+                                var minValueInput = files[indexRow][indexRow];
+
+                                if(input.val()>minValueInput.val()){
+                                    if(checkOverlap(input,files,indexRow)) {
+                                        files[indexRow][indexColumn] = input;
+                                        indexColumn = 0;
+                                        indexRow++;
+                                    }
+                                    else {
+                                        alert("L'estremo dell'intervallo ricade in uno degli intervalli precedentemente definiti");
+                                        control =false;
+                                        return control;
+                                    }
+								}
+                                else{
+                                    alert("L'estremo superiore dell'intervallo "+input.val()+" non può essere inferiore o uguale all'estremo inferiore "+minValueInput.val());
+                                    input.css({'background-color': 'red'});
+                                    control =false;
+                                    return control;
+                                }
+                            }
+                            else {
+                                alert("L'estremo superiore dell'intervallo deve essere un valore numerico");
+                                input.css({'background-color': 'red'});
+                                control =false;
+                                return control;
+                            }
+                            break;
+
+                        case "fileUpload": // 3
+                            break;
+
+                    }
+                }
 			}
     	);
-
-/*        $('input').each(
-            function(index){
-                var input = $(this);
-                alert('Type:' + input.attr('type') + '  Name:' + input.attr('name') + '  Value:' + input.val());
-            }
-        );*/
-
-        var items = [
-            ["Nomefile", "Checksum", "1", "2"],
-            ["Nomefile1", "Checksum1", "3", "4"],
-            ["Nomefile2", "Checksum2", "5", "6"]
-        ];
-
-        var myJsonString = JSON.stringify(items);
-
-        console.log("Array JSON:"+encodeURIComponent(myJsonString));
 
         return false;
 
     }
+
+    function checkOverlap(input, ranges, rangeNum){
+
+        if(ranges.length!=0){
+            for(var i = 0; i < rangeNum; i++) {
+                var range = ranges[i];
+                if(input.val() >=range[0].val()&&input.val() <=range[1].val()){
+                    input.css({'background-color': 'red'});
+                    return false;
+				}
+ /*               for(var j = 0; j < range.length; j++) {
+                    //display("range[" + i + "][" + j + "] = " + range[j]);
+
+                	input=range[j];
+                }*/
+            }
+		}
+		else
+		    return true;
+
+        return true;
+	}
 
     /*
 
@@ -169,6 +267,10 @@
 				    alert("Non si possono aggiungere più di "+maxFiles+" files");
 
             }
+            else{
+                if($(e.target).attr("id")!="submit")
+                	$(e.target).css({'background-color': 'aliceblue'});
+			}
 
         });
 
@@ -203,7 +305,7 @@
 </head>
 <%
 
-       String typeInstallUff = request.getParameter("typeInstallUff");
+	String typeInstallUff = request.getParameter("typeInstallUff");
     String tipoUsoRelease = request.getParameter("tipoUsoRelease");
     String code = request.getParameter("code");
     String jspTitle="";
@@ -317,7 +419,7 @@
 												<td  colspan="3">Nome File: &nbsp;<%=trps.getFileName()%></td>
 												<td  colspan="3"><label for="checksum">Checksum :</label><input type="text"  name="checkSum" size="5" maxlength="10" value="<%=trps.getCheckSum()%>"/></td>
 												<td  colspan="1"><label for="min">Min :</label><input  type="text" name="minValue" size="5" maxlength="10" value="<%=trps.getTrpsId().getRangeMinValue()%>"/></td>
-												<td  colspan="1"><label for="max">Max :</label><input  type="text" name="MaxValue" size="5" maxlength="10" value="<%=trps.getRangeMaxValue()%>"/></td>
+												<td  colspan="1"><label for="max">Max :</label><input  type="text" name="maxValue" size="5" maxlength="10" value="<%=trps.getRangeMaxValue()%>"/></td>
 											</tr>
 											<tr align="center">
 												<td colspan="7"><label for="fileUpload">Carica File &nbsp;</label><input  type="file" name="fileUpload""/></td>
@@ -371,7 +473,7 @@
 										<input type="hidden" name="code" value="<%=code%>"/>
 										<input type="hidden" name="tipoRelease" value="<%=tipoUsoRelease%>"/>
 										<input type="hidden" name="typeInstallUff" value="<%=typeInstallUff%>"/>
-										<input type="hidden" name="files" value=""/>
+										<input type="hidden" name="numFiles" value=""/>
 										<input type="submit" class="button" id="annulla" name="annulla" value="Annulla" onclick="return back();"/>
 									</td>
 								</tr>
