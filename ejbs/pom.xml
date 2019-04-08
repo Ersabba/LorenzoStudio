@@ -12,6 +12,7 @@
 
   <artifactId>ejbs</artifactId>
   <packaging>ejb</packaging>
+  <version>2.0-SNAPSHOT</version>
 
   <name>enterprise java beans</name>
 
