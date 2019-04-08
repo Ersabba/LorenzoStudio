@@ -4,7 +4,7 @@ import org.apache.log4j.Logger;
 
 import javax.ejb.SessionContext;
 
-public class HelloBean implements javax.ejb.SessionBean{
+public class HelloBean implements javax.ejb.SessionBean {
 
     private static final Logger logger = Logger.getLogger(HelloBean.class);
 
