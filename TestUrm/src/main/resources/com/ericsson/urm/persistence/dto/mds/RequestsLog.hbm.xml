@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ericsson.urm.persistence.dto.mds.RequestsLogDTO" table="REQUESTS_LOG">
+        <id name="id" type="java.lang.Long">
+            <column name="ID" />
+            <generator class="sequence">
+    			<param name="sequence">URM_REQUESTS_LOG</param>
+			</generator>
+        </id>
+        <property name="fileId" type="string">
+            <column name="ID_REQUEST" length="50" />
+        </property>
+        <property name="operationType" type="string">
+            <column name="OPERATION" length="50" />
+        </property>
+        <property name="operationTimestamp" type="string">
+            <column name="TIMESTAMP" length="20" />
+        </property>
+        <property name="notes" type="string">
+            <column name="NOTES" length="255" />
+        </property>
+        <property name="numRec" type="java.lang.Integer">
+            <column name="NUMREC" />
+        </property>
+        <property name="targetName" type="string">
+            <column name="TARGET_NAME" length="50"/>
+        </property>  
+        <property name="availabilityTimestamp" type="timestamp">
+            <column name="AVALAIBILITY_TIMESTAMP"/>
+        </property>      
+    </class>
+</hibernate-mapping>

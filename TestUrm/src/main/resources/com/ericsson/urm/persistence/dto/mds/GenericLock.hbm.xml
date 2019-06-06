@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ericsson.urm.persistence.dto.mds.GenericLock" table="MDS_GENERIC_LOCK">
+    
+    	<composite-id name="id" class="com.ericsson.urm.persistence.dto.mds.GenericLockId">
+           <key-property  name="idResource" type="string">
+    			<column name="ID_RESOURCE" length="250"/>    			           	
+           </key-property>
+    	   <key-property  name="lockType" type="string" access="field">
+    			<column name="LOCK_TYPE" length="250"/>    			           	
+           </key-property>        
+    	</composite-id>
+    
+        <property name="owner" type="string">
+            <column name="OWNER" length="100" />
+        </property>
+        <property name="leaseTime" type="timestamp">
+            <column name="LEASE_TIME" />
+        </property>
+        <property name="lockRepeated" type="int">
+            <column name="LOCK_REPEATED" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.ericsson.urm.persistence.core.dto.RadCheck" table="RADCHECK">
+   
+       <id name="id" type="int">
+	       <column name="ID" />
+	       <generator class="assigned"/>
+       </id>
+        <property name="username" type="string" >
+            <column name="USERNAME" />
+        </property>
+        <property name="attribute" type="string" >
+            <column name="ATTRIBUTE" />
+        </property>
+        <property name="op" type="string" >
+            <column name="OP" />
+        </property>
+        <property name="value" type="string" >
+            <column name="VALUE" />
+        </property>
+        
+    </class>
+</hibernate-mapping>

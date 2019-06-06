@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-ott-2008 14.21.35 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+	<class name="com.ericsson.urm.persistence.dto.mds.MdsGruppo" table="MDS_GRUPPO">
+		
+		<id name="idGruppo" type="long">
+			<column name="ID_GRUPPO" />
+          	<generator class="sequence">
+           		<param name="sequence">SQN_MDS_GRUPPO</param>
+     		</generator>
+		</id>
+		
+		<property name="descGruppo" type="string">
+			<column name="DESC_GRUPPO" length="50" />
+		</property>
+		
+        <set name="utenti" table="MDS_REL_UTENTE_GRUPPO" 
+        	inverse="false" lazy="true" fetch="select" cascade="all" >
+            <key>
+                <column name="ID_GRUPPO" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.ericsson.urm.persistence.dto.mds.MdsUtente">
+                <column name="ID_UTENTE" not-null="true" />
+            </many-to-many>
+        </set>
+				
+	</class>
+		
+</hibernate-mapping>

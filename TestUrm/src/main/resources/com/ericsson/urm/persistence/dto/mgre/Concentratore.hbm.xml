@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.ericsson.urm.persistence.dto.mgre.Concentratore" table="CONCENTRATORE">
+   
+       <id name="codConcentratore" type="string">
+	       <column name="COD_CONCENTRATORE" />
+	       <generator class="assigned"/>
+       </id>
+        <property name="codCabinaSecondaria" type="string" >
+            <column name="COD_CABINA_SECONDARIA" />
+        </property>
+        <property name="statoConcentratore" type="string" >
+            <column name="STATO_CONCENTRATORE" />
+        </property>
+        <property name="codPadre" type="string" >
+            <column name="COD_PADRE" />
+        </property>
+        <property name="tipoModem" type="string" >
+            <column name="TIPO_MODEM" />
+        </property>
+        <property name="numTelModem" type="string" >
+            <column name="NUM_TEL_MODEM" />
+        </property>
+        <property name="imsiModem" type="string" >
+            <column name="IMSI_MODEM" />
+        </property>
+        <property name="ipVpn" type="string" >
+            <column name="IP_VPN" />
+        </property>
+        <property name="pstnModem" type="string" >
+            <column name="PSTN_MODEM" />
+        </property>
+        <property name="accessUser" type="string" >
+            <column name="ACCESS_USER" />
+        </property>
+        <property name="ftprUser" type="string" >
+            <column name="FTPR_USER" />
+        </property>
+        <property name="ftpwUser" type="string" >
+            <column name="FTPW_USER" />
+        </property>
+        <property name="accessPwd" type="string" >
+            <column name="ACCESS_PWD" />
+        </property>
+        <property name="ftprPwd" type="string" >
+            <column name="FTPR_PWD" />
+        </property>
+        <property name="ftpwPwd" type="string" >
+            <column name="FTPW_PWD" />
+        </property>
+        <property name="statoGuasto" type="string" >
+            <column name="STATO_GUASTO" />
+        </property>
+        <property name="codTrasformatore" type="long" >
+            <column name="COD_TRASFORMATORE" />
+        </property>  
+        <property name="ultimoContattoAdd" type="timestamp" >
+            <column name="ULTIMO_CONTATTO_ADD" />
+        </property>       
+        <property name="modelloModem" type="string" >
+            <column name="MODELLO_MODEM" />
+        </property>  
+        <property name="costruttoreModem" type="string" >
+            <column name="COSTRUTTORE_MODEM" />
+        </property>  
+        <property name="dataVariazioneDatiModem" type="timestamp" >
+            <column name="DATA_VARIAZIONE_DATI_MODEM" />
+        </property>  
+        <property name="radiusUser" type="string" >
+            <column name="UTENTE_RADIUS" />
+        </property>  
+        <property name="dataVariazioneUtenteRadius" type="timestamp" >
+            <column name="DATA_VARIAZIONE_UTENTE_RADIUS" />
+        </property>         
+        <property name="stato" type="string" >
+            <column name="STATO" />
+        </property>                 
+        <property name="dataVariazioneStato" type="timestamp" >
+            <column name="DATA_VARIAZIONE_STATO" />
+        </property>  
+        
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ericsson.urm.persistence.dto.mds.ClientUnregistered" table="MDS_CLIENT_UNREGISTERED">
+        <id name="name" type="string" access="field">
+			<column name="NAME" length="20" />
+			<generator class="assigned" />
+		</id>
+        <property name="url" type="string">
+            <column name="URL" length="250" />
+        </property>
+        <property name="active" type="yes_no">
+            <column name="ACTIVE" precision="1" scale="0" />
+        </property>   
+    </class>
+</hibernate-mapping>

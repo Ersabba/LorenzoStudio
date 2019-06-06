@@ -1,0 +1,12 @@
+package com.ericsson.urm.thor.ws.datatypes;
+
+public enum ResultCode {
+	SUCCESS,
+	DATA_NOT_FOUND,
+	TOO_MANY_DATA,
+	ILLEGAL_ARGUMENTS,
+	FAILED, 
+	PARTIAL_SUCCESS,
+	SUPERAMENTO_SOGLIA_MAX_CCS,
+	HEALTCARE_CODE_ENABLED;
+}

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.lorenzo</groupId>
+    <artifactId>TestUrm</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+
+        <hibernate.groupId>hibernate</hibernate.groupId>
+        <hibernate.artifactId>hibernate</hibernate.artifactId>
+        <hibernate.version>3-urm-all</hibernate.version>
+        <hibernate.scope>compile</hibernate.scope>
+
+        <hibernate.orig.groupId>org.hibernate</hibernate.orig.groupId>
+        <hibernate.annotations.artifactId>hibernate-annotations</hibernate.annotations.artifactId>
+        <hibernate.annotations.version>3.4.0.GA</hibernate.annotations.version>
+        <hibernate.commons-annotations.artifactId>hibernate-commons-annotations</hibernate.commons-annotations.artifactId>
+        <hibernate.commons-annotations.version>3.1.0.GA</hibernate.commons-annotations.version>
+        <hibernate.ejb3.artifactId>ejb3-persistence</hibernate.ejb3.artifactId>
+        <hibernate.ejb3.version>1.0.2.GA</hibernate.ejb3.version>
+
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>${hibernate.groupId}</groupId>
+            <artifactId>${hibernate.artifactId}</artifactId>
+            <version>${hibernate.version}</version>
+            <scope>${hibernate.scope}</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>${hibernate.orig.groupId}</groupId>
+            <artifactId>${hibernate.annotations.artifactId}</artifactId>
+            <version>${hibernate.annotations.version}</version>
+            <scope>${hibernate.scope}</scope>
+        </dependency>
+        <dependency>
+            <groupId>${hibernate.orig.groupId}</groupId>
+            <artifactId>${hibernate.commons-annotations.artifactId}</artifactId>
+            <version>${hibernate.commons-annotations.version}</version>
+            <scope>${hibernate.scope}</scope>
+        </dependency>
+        <dependency>
+            <groupId>${hibernate.orig.groupId}</groupId>
+            <artifactId>${hibernate.ejb3.artifactId}</artifactId>
+            <version>${hibernate.ejb3.version}</version>
+            <scope>${hibernate.scope}</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>weblogic</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>10.3.6</version>
+        </dependency>
+
+<!--        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>11.2.0.3</version>
+        </dependency>-->
+
+<!--        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>12.1.0.1-atlassian-hosted</version>
+        </dependency>-->
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.16</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.transaction</groupId>
+            <artifactId>jta</artifactId>
+            <version>1.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.9</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.0</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.4.0</version>
+                <configuration>
+                    <mainClass>test.App</mainClass>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

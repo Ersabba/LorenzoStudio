@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-ott-2008 14.21.35 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+	<class name="com.ericsson.urm.persistence.dto.mds.MdsUtente" table="MDS_UTENTE">
+		
+		<id name="idUtente" type="long">
+			<column name="ID_UTENTE" />
+           	<generator class="sequence">
+           	 	<param name="sequence">SQN_MDS_UTENTE</param>
+      		</generator>
+		</id>
+		
+		<property name="username" type="string">
+			<column name="USERNAME" length="20" />
+		</property>
+		<property name="password" type="string">
+			<column name="PASSWORD" length="100" />
+		</property>
+		<property name="fullname" type="string">
+			<column name="FULLNAME" length="20" />
+		</property>
+		<property name="active" type="yes_no">
+         	<column name="ACTIVE" />
+      	</property>
+		<property name="deleted" type="yes_no">
+         	<column name="DELETED" />
+      	</property>
+		<property name="mail" type="string">
+			<column name="MAIL" length="100" />
+		</property>
+		<property name="telephone" type="string">
+			<column name="TELEPHONE" length="20" />
+		</property>
+		<property name="lastLoginDate" type="timestamp">
+			<column name="LAST_LOGIN_DATE" />
+		</property>
+		
+		<many-to-one name="ruolo" 
+					 column="ID_RUOLO" 
+					 class="com.ericsson.urm.persistence.dto.mds.MdsRuolo"	
+					 not-null="false" 
+					 lazy="false"/>
+		
+        <set name="gruppi" table="MDS_REL_UTENTE_GRUPPO" 
+        	inverse="false" lazy="true" fetch="select" cascade="all" >
+            <key>
+                <column name="ID_UTENTE" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.ericsson.urm.persistence.dto.mds.MdsGruppo">
+                <column name="ID_GRUPPO" not-null="true" />
+            </many-to-many>
+        </set>
+				
+	</class>
+		
+</hibernate-mapping>

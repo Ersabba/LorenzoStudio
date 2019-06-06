@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+   <class name="com.ericsson.gestionesw.persistence.dto.Trps" table="TRPS">
+   
+      <composite-id name="trpsId" class="com.ericsson.gestionesw.persistence.dto.TrpsId">
+         <key-property  name="code" type="string">
+            <column name="CODE" length="150"/>
+         </key-property>
+
+         <key-property name="tipoUsoRelease" access="field" type="string">
+            <column name="TIPO_USO_REL" length="20" />
+         </key-property>
+         
+         <key-property name="rangeMinValue" access="field" type="long">
+            <column name="MIN_VALUE" />
+         </key-property>
+
+         <key-property name="typeInstallUff" type="string">
+            <column name="TYPE_INSTALL_UFF" length="150" />
+         </key-property>
+      </composite-id>
+
+      <property name="fileName" type="string">
+         <column name="FILE_NAME" length="150" />
+      </property>
+
+      <property name="checkSum" type="string">
+         <column name="CHECKSUM" length="10" />
+      </property>
+
+      <property name="rangeMaxValue" access="field" type="long">
+         <column name="MAX_VALUE" />
+      </property>
+
+   </class>
+</hibernate-mapping>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-ott-2008 14.21.35 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+	<class name="com.ericsson.urm.persistence.dto.mds.LogOperation" table="MGDB_LOG_OPERATION">
+		
+		<id name="id" type="long">
+			<column name="ID" />
+             <generator class="sequence">
+               	 <param name="sequence">SQN_LOGOPERAZIONI</param>
+        	</generator>
+		</id>
+		<property name="operator" type="string">
+			<column name="OPERATOR" length="50" />
+		</property>
+		<property name="operationTable" type="string">
+			<column name="OPERATION_TABLE" length="50" />
+		</property>		
+		<property name="operationType" type="string">
+			<column name="OPERATION_TYPE" length="1" />
+		</property>
+		<property name="operationTimestamp" type="timestamp">
+			<column name="OPERATION_TIMESTAMP" />
+		</property>
+		<property name="valueBefore" type="text">
+			<column name="VALUE_BEFORE" />
+		</property>
+		<property name="valueAfter" type="text">
+			<column name="VALUE_AFTER" />
+		</property>
+				
+	</class>
+		
+</hibernate-mapping>

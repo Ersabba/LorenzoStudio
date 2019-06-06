@@ -1,0 +1,48 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+   <session-factory>
+      <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+      <property name="hibernate.connection.url">jdbc:oracle:thin:@172.30.6.80:1521:svil</property>
+      <property name="hibernate.dialect">org.hibernate.dialect.Oracle9iDialect</property>
+      <property name="hibernate.connection.username">URMTEST3</property>
+      <property name="hibernate.connection.password">URMTEST3</property>
+      <property name="hibernate.current_session_context_class">thread</property>
+      <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
+
+
+      <property name="hibernate.default_schema">URMTEST3</property>
+      <property name="show_sql">false</property>
+
+
+      <mapping resource="com/ericsson/urm/persistence/dto/mds/AcqFileCcs.hbm.xml" />
+<!--      <mapping resource="com/ericsson/urm/persistence/dto/mds/ElabFileCcs.hbm.xml" />
+      <mapping resource="com/ericsson/urm/persistence/dto/mds/FileCcsFetched.hbm.xml" />
+      <mapping resource="com/ericsson/urm/persistence/dto/mds/ServiceClient.hbm.xml" />
+      <mapping resource="com/ericsson/urm/persistence/dto/mds/ClientUnregistered.hbm.xml" />
+      <mapping resource="com/ericsson/urm/persistence/dto/mds/LogOperation.hbm.xml" />
+      <mapping resource="com/ericsson/urm/persistence/dto/mds/MdsRuolo.hbm.xml" />
+      <mapping resource="com/ericsson/urm/persistence/dto/mds/MdsGruppo.hbm.xml" />
+      <mapping resource="com/ericsson/urm/persistence/dto/mds/MdsUtente.hbm.xml" />
+      <mapping resource="com/ericsson/urm/persistence/dto/mds/RequestsLog.hbm.xml" />
+      <mapping resource="com/ericsson/urm/persistence/dto/mds/GenericLog.hbm.xml" />-->
+
+
+      <mapping resource="com/ericsson/urm/persistence/dto/mgre/Concentratore.hbm.xml" />
+      <mapping resource="com/ericsson/urm/persistence/dto/gestionesw/Trps.hbm.xml" />
+
+      <mapping class="com.ericsson.urm.persistence.dto.mgcf.DeviceReachabilityStatus" />
+      <mapping class="com.ericsson.urm.persistence.dto.mgcf.DeviceReachability" />
+
+      <mapping class="com.ericsson.urm.persistence.dto.mgre.FileAddressId" />
+      <mapping class="com.ericsson.urm.persistence.dto.mgre.FileAddress" />
+      <mapping class="com.ericsson.urm.persistence.dto.mgre.FileDemId" />
+      <mapping class="com.ericsson.urm.persistence.dto.mgre.FileDem" />
+      <mapping class="com.ericsson.urm.persistence.dto.mgre.FileComId" />
+      <mapping class="com.ericsson.urm.persistence.dto.mgre.FileCom" />
+      <mapping class="com.ericsson.urm.persistence.dto.mgre.FileRoutingId" />
+      <mapping class="com.ericsson.urm.persistence.dto.mgre.FileRouting" />
+
+   </session-factory>
+</hibernate-configuration>

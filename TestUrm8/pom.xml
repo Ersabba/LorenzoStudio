@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.lorenzo</groupId>
+    <artifactId>TestUrm8</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+
+        <hibernate.groupId>org.hibernate</hibernate.groupId>
+        <hibernate.artifactId>hibernate-core</hibernate.artifactId>
+        <hibernate.version>5.1.17.Final</hibernate.version>
+        <hibernate.scope>compile</hibernate.scope>
+
+        <!-- Driver Oracle jdbc compatibile con java 8 che non tronca le parte temporale della data-->
+
+        <oracle.jdbc.driver.groupId>weblogic</oracle.jdbc.driver.groupId>
+        <oracle.jdbc.driver.artifactId>ojdbc8</oracle.jdbc.driver.artifactId>
+        <oracle.jdbc.driver.version>12.2.0.1.0</oracle.jdbc.driver.version>
+
+        <!-- Driver Oracle jdbc compatibile con java 8 che tronca le parte temporale della data-->
+
+        <!--<oracle.jdbc.driver.groupId>com.oracle</oracle.jdbc.driver.groupId>
+        <oracle.jdbc.driver.artifactId>ojdbc6</oracle.jdbc.driver.artifactId>
+        <oracle.jdbc.driver.version>11.2.0.4</oracle.jdbc.driver.version>-->
+
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>${hibernate.groupId}</groupId>
+            <artifactId>${hibernate.artifactId}</artifactId>
+            <version>${hibernate.version}</version>
+            <scope>${hibernate.scope}</scope>
+        </dependency>
+
+       <dependency>
+            <groupId>${oracle.jdbc.driver.groupId}</groupId>
+            <artifactId>${oracle.jdbc.driver.artifactId}</artifactId>
+            <version>${oracle.jdbc.driver.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.16</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>javax.transaction</groupId>
+            <artifactId>jta</artifactId>
+            <version>1.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.9</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.0</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.4.0</version>
+                <configuration>
+                    <mainClass>test.App</mainClass>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ericsson.urm.persistence.dto.mds.AcqFileCcs" table="MDS_ACQ_FILE_CCS">
+        <composite-id name="id" class="com.ericsson.urm.persistence.dto.mds.AcqFileCcsId">
+           <key-property  name="acquisitionDate" type="date">
+    			<column name="ACQ_DATE"  />    			           	
+           </key-property>
+    	   <key-property  name="concentratorId" type="string">
+    			<column name="COD_CONCENTRATORE" length="13" />    			           	
+           </key-property>
+           <key-property  name="fileName" type="string">
+    			<column name="FILE_NAME" length="250" />    			           	
+           </key-property>        
+    	</composite-id>     
+    	 
+        <property  name="insertTime" type="string">
+ 			<column name="INSERT_TIME"  />    			           	
+        </property>  
+    	<property name="errorType" type="string" >
+            <column name="ERROR_TYPE" length="50" />
+        </property>     
+        <property name="partitionId" type="int" access="field" >
+            <column name="PARTITION_ID"  />
+        </property>  
+    </class>
+</hibernate-mapping>

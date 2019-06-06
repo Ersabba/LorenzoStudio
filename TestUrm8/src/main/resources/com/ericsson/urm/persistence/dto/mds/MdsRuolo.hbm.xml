@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-ott-2008 14.21.35 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+	<class name="com.ericsson.urm.persistence.dto.mds.MdsRuolo" table="MDS_RUOLO">
+		
+		<id name="idRuolo" type="long">
+			<column name="ID_RUOLO" />
+          	<generator class="sequence">
+           		<param name="sequence">SQN_MDS_RUOLO</param>
+     		</generator>
+		</id>
+		
+		<property name="descRuolo" type="string">
+			<column name="DESC_RUOLO" length="50" />
+		</property>        
+		
+		<set name="utenti" table="MDS_UTENTE" 
+				inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_RUOLO" not-null="true" />
+            </key>
+            <one-to-many class="com.ericsson.urm.persistence.dto.mds.MdsUtente" />
+        </set>
+		
+				
+	</class>
+		
+</hibernate-mapping>

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ericsson.urm.persistence.dto.mds.ServiceClient" table="SERVICE_CLIENT">
+        <id name="serviceClientId" type="int" access="field">
+            <column name="SERVICE_CLIENT_ID" />
+            <generator class="sequence">
+    			<param name="sequence">SERVICE_CLIENT_SEQ</param>
+			</generator>
+        </id>
+        <property name="name" type="string">
+            <column name="NAME" length="50" />
+        </property>
+        <property name="password" type="string">
+            <column name="PASSWORD" length="50" />
+        </property>
+        <property name="active" type="int" access="field">
+            <column name="ACTIVE" />
+        </property>
+        <property name="subscribed" type="int" access="field">
+            <column name="SUBSCRIBED" />
+        </property>
+        <property name="url" type="string">
+            <column name="URL" length="50" />
+        </property>
+        <property name="t2" type="int">
+            <column name="T2" />
+        </property>
+        <property name="key" type="string">
+            <column name="KEY" length="50" />
+        </property>
+        <property name="subscriptionDate" type="date">
+            <column name="SUBSCRIPTION_DATE" />
+        </property>   
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.ericsson.urm.persistence.dto.mds.GenericLog" table="MDS_GENERIC_LOG">
+    
+    	<id name="id" type="long">
+			<column name="ID" />
+          	<generator class="sequence">
+           		<param name="sequence">SQN_MDS_GENERIC_LOG</param>
+     		</generator>
+		</id>
+    
+        <property name="operatore" type="string">
+            <column name="OPERATORE" length="100" />
+        </property>
+        <property name="timestamp" type="timestamp">
+            <column name="TIMESTAMP" />
+        </property>
+        <property name="tipoAttivita" type="string" access="field">
+            <column name="TIPO_ATTIVITA" />
+        </property>
+        <property name="descAttivita" type="string">
+            <column name="DESC_ATTIVITA" />
+        </property>
+        <property name="livelloLog" type="string" access="field">
+            <column name="LIVELLO_LOG" />
+        </property>
+        <property name="idRisorsa" type="string">
+            <column name="ID_RISORSA" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -20,6 +20,7 @@
     <module>servlet</module>
     <module>Spring5Sample</module>
     <module>Struts2</module>
+      <module>wsgen_jaxws_example</module>
   </modules>
 </project>
 
