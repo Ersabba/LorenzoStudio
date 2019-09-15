@@ -34,6 +34,12 @@ hs_err_pid*
 .idea/**/dictionaries
 .idea/**/shelf
 
+<<<<<<< Updated upstream
+=======
+# Generated files
+.idea/**/contentModel.xml
+
+>>>>>>> Stashed changes
 # Sensitive or high-churn files
 .idea/**/dataSources/
 .idea/**/dataSources.ids
@@ -54,6 +60,11 @@ hs_err_pid*
 # .idea/modules.xml
 # .idea/*.iml
 # .idea/modules
+.idea/modules.xml
+.idea/*.iml
+.idea/modules
+*.iml
+*.ipr
 
 # CMake
 cmake-build-*/
