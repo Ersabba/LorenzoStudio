@@ -4,10 +4,7 @@ import com.ericsson.urm.exceptions.ConfigurationException;
 import com.ericsson.urm.persistence.HibernateSessionManagement;
 import com.ericsson.urm.persistence.OracleHibernateSessionManagement;
 import com.ericsson.urm.util.ArgumentsCheckerUtil;
-import org.hibernate.Hibernate;
-import org.hibernate.Query;
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
+import org.hibernate.*;
 
 import java.math.BigInteger;
 import java.util.Date;
@@ -77,7 +74,18 @@ public abstract class GenericDAO {
 	}
 
 	public void closeTransaction(){
-		session.getTransaction().commit();
+
+	    if(session == null)
+            System.out.println("Molto strano!!!!!!");
+
+        session = getSessionManagement().getSession();
+
+	    Transaction tx = session.getTransaction();
+
+	    if(tx!=null)
+		    session.getTransaction().commit();
+	    else
+	        System.out.println("Nessuna Transazione da chiudere!!!!!!");
 	}
 
 }

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.ericsson.urm.persistence.dto.mgre.LenntType" table="MGRE_LENNT_TYPE">
+   
+       <id name="lenntTypeId" type="string">
+	       <column name="LENNT_TYPE_ID" />
+	       <generator class="assigned"/>
+       </id>
+        <property name="type" type="string" >
+            <column name="TYPE" />
+        </property>
+        <property name="loadProgressionEnabled" type="string" >
+            <column name="LOAD_PROGRESSION_ENABLED" />
+        </property>
+        <property name="internalCode" type="string" access="field">
+            <column name="INTERNAL_CODE" />
+        </property>
+        <property name="description" type="string" >
+            <column name="DESCRIPTION" />
+        </property>
+        <property name="protocol" type="string" access="field">
+            <column name="PROTOCOL" />
+        </property>       
+        
+    </class>
+</hibernate-mapping>

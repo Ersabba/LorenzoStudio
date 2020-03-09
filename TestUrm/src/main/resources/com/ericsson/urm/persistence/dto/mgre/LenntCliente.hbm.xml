@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.ericsson.urm.persistence.dto.mgre.LenntCliente" table="LENNT_CLIENTE">
+
+        <id name="matricolaLenntCliente" type="string">
+            <column name="MATRICOLA_LENNT_CLIENTE" />
+            <generator class="assigned"/>
+        </id>
+        <property name="codConcentratore" type="string" >
+            <column name="COD_CONCENTRATORE" />
+        </property>
+        <property name="codTipmodin" type="string" >
+            <column name="COD_TIPMODIN" />
+        </property>
+        <property name="giornoSettimana" type="string" >
+            <column name="GIORNO_SETTIMANA" />
+        </property>
+        <property name="coeffLimitazione" type="long" >
+            <column name="COEFF_LIMITAZIONE" />
+        </property>
+        <property name="codConfigAll" type="string" >
+            <column name="COD_CONFIG_ALL" />
+        </property>
+        <property name="codTiputt" type="string" >
+            <column name="COD_TIPUTT" />
+        </property>
+        <property name="codGruppoApplicativo" type="string" >
+            <column name="COD_GRUPPO_APPLICATIVO" />
+        </property>
+        <property name="codLineaBt" type="long" >
+            <column name="COD_LINEA_BT" />
+        </property>
+        <property name="codSezione" type="long" >
+            <column name="COD_SEZIONE" />
+        </property>
+        <property name="flagRipetitore" type="long" >
+            <column name="FLAG_RIPETITORE" />
+        </property>
+        <property name="progLenntGruppo" type="long" >
+            <column name="PROGR_LENNT_GRUPPO" />
+        </property>
+        <property name="caratteristicaInstallazione" type="string" >
+            <column name="CARATTERISTICA_INSTALLAZIONE" />
+        </property>
+        <property name="raggLennt" type="string" >
+            <column name="RAGGIUNG_LENNT" />
+        </property>
+        <property name="statoAllegEmerg" type="string" >
+            <column name="STATO_ALLEGG_EMERG" />
+        </property>
+        <property name="guastoLennt" type="string" >
+            <column name="GUASTO_LENNT" />
+        </property>
+        <property name="statoAllegProgr" type="string" >
+            <column name="STATO_ALLEGG_PROGR" />
+        </property>
+        <property name="presenzaDatiSegr" type="string" >
+            <column name="PRESENZA_DATI_SEGR" />
+        </property>
+        <!--
+        <property name="periodoCurveDiCarico" type="string" >
+            <column name="PERIODO_CURVE_DI_CARICO" />
+        </property>
+        manca questa colonna
+        -->
+        <property name="codPosizione" type="string" >
+            <column name="COD_POSIZIONE" />
+        </property>
+        <property name="indirizzo" type="long" >
+            <column name="INDIRIZZO" />
+        </property>
+        <property name="costruttore" type="string" >
+            <column name="COSTRUTTORE" />
+        </property>
+
+        <many-to-one name="tipo" column="TIPO" class="com.ericsson.urm.persistence.dto.mgre.LenntType" not-null="true" lazy="false"/>
+
+        <property name="annoFabbricazione" type="string" >
+            <column name="ANNO_FABBRICAZIONE" />
+        </property>
+        <property name="progressivoAnno" type="string" >
+            <column name="PROGRESSIVO_ANNO" />
+        </property>
+        <property name="matrDistrEnerg" type="string" >
+            <column name="MATR_DISTR_ENERG" />
+        </property>
+        <property name="lingua" type="string" >
+            <column name="LINGUA" />
+        </property>
+        <property name="releaseFirmware" type="string" >
+            <column name="RELEASE_FIRMWARE" />
+        </property>
+        <property name="numTelGuasti" type="string" >
+            <column name="NUMTEL_GUASTI" />
+        </property>
+        <property name="numTelInfo" type="string" >
+            <column name="NUMTEL_INFO" />
+        </property>
+        <property name="numeroUtenza" type="string" >
+            <column name="NUMERO_UTENZA" />
+        </property>
+        <property name="fase" type="string" >
+            <column name="FASE" />
+        </property>
+        <property name="faseOld" type="string" >
+            <column name="FASE_OLD" />
+        </property>
+        <property name="dataFase" type="date" >
+            <column name="DATA_FASE" />
+        </property>
+        <property name="ultimoContatto" type="timestamp" >
+            <column name="ULTIMO_CONTATTO" />
+        </property>
+        <property name="cabinaSecondaria" type="string" >
+            <column name="COD_CABINA_SECONDARIA" />
+        </property>
+        <property name="tipoAlimentazione" type="string" >
+            <column name="TIPO_ALIMENTAZIONE" />
+        </property>
+        <property name="tipoAssegnazione" type="string" >
+            <column name="TIPO_ASSEGNAZIONE" />
+        </property>
+        <property name="codConcentratore2" type="string" >
+            <column name="COD_CONCENTRATORE2" />
+        </property>
+        <property name="codConcentratore3" type="string" >
+            <column name="COD_CONCENTRATORE3" />
+        </property>
+        <property name="modello" type="string" >
+            <column name="MODELLO" />
+        </property>
+        <property name="billingMode" type="yes_no" >
+            <column name="BILLING_MODE" />
+        </property>
+        <property name="ultimoContattoAdd" type="timestamp" >
+            <column name="ULTIMO_CONTATTO_ADD" />
+        </property>
+        <property name="lastPunctualFailure" type="timestamp" >
+            <column name="LAST_PUNCTUAL_FAILURE" />
+        </property>
+
+    </class>
+</hibernate-mapping>
