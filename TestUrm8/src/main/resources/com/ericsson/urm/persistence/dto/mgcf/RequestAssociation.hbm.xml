@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-ott-2008 14.21.35 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.ericsson.urm.persistence.dto.mgcf.RequestAssociation" table="MGCF_REQUEST_ASSOCIATION">
+        <id name="idRequest" type="long">
+            <column name="ID_REQUEST"  />
+             <generator class="sequence">
+               	 <param name="sequence_name">SQN_ID_REQUEST_ASSOCIATION</param>
+        	</generator>
+        </id> 
+        <many-to-one name="externalSystem" column="ID_ES" class="com.ericsson.urm.persistence.dto.mgcf.ExternalSystem"	not-null="true" lazy="false"/>
+        <property name="taskId" type="string">
+            <column name="TASK_ID" length="20" />
+        </property>
+        <property name="idRequestSource" type="integer">
+            <column name="ID_REQUEST_SOURCE" />
+        </property>
+        <property name="timestampRequest" type="timestamp" >
+            <column name="TS_REQUEST"  />
+        </property>
+         <property name="subsystemId" type="integer">
+            <column name="SUBSYSTEM_ID" />
+        </property>
+      
+       <many-to-one name="requestType" column="ID_REQUEST_TYPE" class="com.ericsson.urm.persistence.dto.mgcf.RequestType"	not-null="true" lazy="false"/>
+    </class>
+</hibernate-mapping>

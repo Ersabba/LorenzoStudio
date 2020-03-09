@@ -14,11 +14,16 @@ import com.ericsson.urm.persistence.core.dto.RadiusCMSInfoDTO;
 import com.ericsson.urm.persistence.core.dto.TestDto;
 import com.ericsson.urm.persistence.dao.gestionesw.TrpsDAO;
 import com.ericsson.urm.persistence.dao.mds.AcqFileCcsDAO;
+import com.ericsson.urm.persistence.dao.mds.StatsAcqFileCcsDAO;
+import com.ericsson.urm.persistence.dao.mgcf.ActivityDAO;
 import com.ericsson.urm.persistence.dao.mgcf.DeviceReachabilityDAO;
 import com.ericsson.urm.persistence.dao.mgcf.ReachabilityStatusDAO;
 import com.ericsson.urm.persistence.dao.mgre.*;
 import com.ericsson.urm.persistence.dto.mds.AcqFileCcs;
 import com.ericsson.urm.persistence.dto.mds.AcqFileCcsId;
+import com.ericsson.urm.persistence.dto.mds.StatsAcqFileCcs;
+import com.ericsson.urm.persistence.dto.mds.StatsAcqFileCcsId;
+import com.ericsson.urm.persistence.dto.mgcf.Activity;
 import com.ericsson.urm.persistence.dto.mgcf.DeviceReachabilityStatus;
 import com.ericsson.urm.persistence.dto.mgcf.ReachabilityStatistic;
 import com.ericsson.urm.persistence.dto.mgre.*;
@@ -37,7 +42,7 @@ public class App {
 
         System.out.println("Maven + Hibernate + Oracle");
 
-        OracleHibernateSessionManagement2 sm = new OracleHibernateSessionManagement2();
+        //OracleHibernateSessionManagement2 sm = new OracleHibernateSessionManagement2();
 
         /*AcqFileCcsDAO acqFileCcsDAO = new AcqFileCcsDAO(sm);
 
@@ -106,8 +111,11 @@ public class App {
 
         //testDateHibernate();
 
-        testJDBCConnection();
+        // testJDBCConnection();
 
+        //test_cr21();
+
+        test_cr67();
     }
 
     static public void  testReachability(){
@@ -456,6 +464,39 @@ public class App {
         dao.closeTransaction();
 
 
+    }
+
+    public static void test_cr21(){
+
+        OracleHibernateSessionManagement sm = new OracleHibernateSessionManagement();
+
+        ActivityDAO dao = new ActivityDAO(sm);
+
+        // Fatto da Angelica
+        // Activity[] activities = dao.getSuspendedActivities(1);
+
+        Activity[] activities = dao.getSuspendedActivitiesLorenzo(1);
+
+        for(int i=0;i<activities.length;i++)
+            System.out.println("Attività n."+i+" "+activities[i]);
+
+        dao.closeTransaction();
+
+    }
+
+    public static void test_cr67() {
+
+        OracleHibernateSessionManagement sm = new OracleHibernateSessionManagement();
+
+        StatsAcqFileCcsDAO statsAcqFileCcsDAO = new StatsAcqFileCcsDAO(sm);
+
+        StatsAcqFileCcsId statsAcqFileCcsId = new StatsAcqFileCcsId(new Date(),"12345","FILENAME");
+
+        StatsAcqFileCcs statsAcqFileCcs = new StatsAcqFileCcs(statsAcqFileCcsId,3,4,5,6,"A333");
+
+        statsAcqFileCcsDAO.insert(statsAcqFileCcs);
+
+        statsAcqFileCcsDAO.closeTransaction();
     }
 
 }

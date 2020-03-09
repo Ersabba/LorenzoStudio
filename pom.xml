@@ -15,8 +15,11 @@
     <module>projects</module>
     <module>primary-source</module>
     <module>servlets</module>
-    <module>ejbs</module>
-    <module>ear</module>
+      <module>ejbs</module>
+      <module>ear</module>
+      <module>testcopyfile</module>
+      <module>TestUrm</module>
+      <module>TestUrm8</module>
   </modules>
 
   <distributionManagement>

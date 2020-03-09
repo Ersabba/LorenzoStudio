@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-ott-2008 14.21.35 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+	<class	name="com.ericsson.urm.persistence.dto.mgcf.Activity"		table="MGCF_ACTIVITY">
+		
+		<id name="idRequest" type="long">
+			<column name="ID_REQUEST" />
+			<generator class="assigned" />
+		</id>
+		<property name="taskStateId" type="string">
+			<column name="TASKSTATE_ID" length="10" />
+		</property>
+		<property name="taskTypeId" type="string">
+			<column name="TASKTYPE_ID" length="10" />
+		</property>		
+		<property name="expectedDate" type="date">
+			<column name="EXPECTED_DATE" />
+		</property>
+		<property name="insertDate" type="timestamp">
+			<column name="INSERT_DATE" />
+		</property>
+		<property name="customizeRequest" type="yes_no">
+			<column name="IS_CUSTOMIZE_REQ" />
+		</property>
+		<property name="lenntcomFlag" type="yes_no">
+			<column name="LENNTCOM_FLAG" />
+		</property>
+		<property name="errorCode" type="string">
+			<column name="ERROR_CODE" length="10" />
+		</property>
+		<property name="state" type="string">
+			<column name="STATE" length="30" />
+		</property>
+		<property name="priority" type="integer">
+			<column name="PRIORITY"  />
+		</property>
+		<property name="executionTimestamp" type="timestamp">
+			<column name="EXECUTION_TIMESTAMP" />
+		</property>
+		<property name="acquisitiontimestamp" type="timestamp">
+			<column name="ACQUISITION_TIMESTAMP" />			
+		</property>
+		<property name="notes" type="string">
+			<column name="NOTE" length="150" />
+		</property>	
+		
+		 <property name="locationId" type="string">
+            <column name="LOCATION_ID" length="20" />
+        </property> 
+        
+        <property name="zoneId" type="string">
+            <column name="ZONE_ID" length="30" />
+        </property>
+        <property name="authorized" type="yes_no">
+			<column name="AUTHORIZED" />
+		</property>        
+        <property name="authorizationDate" type="date">
+			<column name="AUTHORIZATION_DATE" />
+		</property>
+		<property name="recoveryCode" type="string">
+            <column name="RECOVERY_CODE" length="30" />
+        </property>
+        
+        <one-to-one name="requestAssociation" class="com.ericsson.urm.persistence.dto.mgcf.RequestAssociation" lazy="false"/>
+		
+		</class>
+		
+</hibernate-mapping>

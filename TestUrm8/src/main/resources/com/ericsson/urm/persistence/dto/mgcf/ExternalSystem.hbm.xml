@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 14-ott-2008 14.21.35 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.ericsson.urm.persistence.dto.mgcf.ExternalSystem" table="MGCF_EXTERNAL_SYSTEM">
+        <id name="idEs" type="integer">
+            <column name="ID_ES"  />
+            <generator class="assigned" />
+        </id>
+         <property name="esName" type="string">
+            <column name="ES_NAME" length="20" />
+        </property>
+    </class>
+</hibernate-mapping>

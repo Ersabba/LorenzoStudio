@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 7-nov-2008 16.59.51 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.ericsson.urm.persistence.dto.mgcf.RequestClass" table="MGCF_REQUEST_CLASS">
+        <id name="idRequestClass" type="integer">
+            <column name="ID_REQUEST_CLASS"  />
+            <generator class="assigned" />
+        </id>
+        <property name="requestClass" type="string">
+            <column name="REQUEST_CLASS" length="50" />
+        </property>        
+    </class>
+</hibernate-mapping>
