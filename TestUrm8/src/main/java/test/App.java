@@ -35,6 +35,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Date;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class App {
 
@@ -115,7 +116,9 @@ public class App {
 
         //test_cr21();
 
-        test_cr67();
+        //test_cr67();
+
+        testPassingParameters();
     }
 
     static public void  testReachability(){
@@ -498,5 +501,59 @@ public class App {
 
         statsAcqFileCcsDAO.closeTransaction();
     }
+
+    private static void passParameter1(long par1){
+
+        par1++;
+    }
+
+    private static void passParameter2(Long par1){
+
+        par1++;
+    }
+
+    private static void passParameter3(AtomicLong par1){
+
+        par1.getAndAdd(1);
+    }
+
+    private static void passParameter4(String par1){
+
+        Long value = Long.parseLong(par1);
+
+        value++;
+        par1=String.valueOf(value);
+    }
+
+    public static void testPassingParameters(){
+
+        System.out.println("Passing Parameters");
+
+        long test1=0;
+
+        passParameter1(test1);
+
+        System.out.println("Parametro 1 Incrementato: "+test1);
+
+        Long test2=0L;
+
+        passParameter2(test2);
+
+        System.out.println("Parametro 2 Incrementato: "+test2);
+
+        AtomicLong test3=new AtomicLong(0);
+
+        passParameter3(test3);
+
+        System.out.println("Parametro 3 Incrementato: "+test3);
+
+        String test4 = "0";
+
+        passParameter4(test4);
+
+        System.out.println("Parametro 4 Incrementato: "+test4);
+    }
+
+
 
 }
