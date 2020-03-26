@@ -26,6 +26,10 @@
         <!--<oracle.jdbc.driver.groupId>com.oracle</oracle.jdbc.driver.groupId>
         <oracle.jdbc.driver.artifactId>ojdbc6</oracle.jdbc.driver.artifactId>
         <oracle.jdbc.driver.version>11.2.0.4</oracle.jdbc.driver.version>-->
+        <weblogic.client.groupId>weblogic</weblogic.client.groupId>
+        <weblogic.client.artifactId>wlfullclient</weblogic.client.artifactId>
+        <weblogic.client.version>12.2.1.3.0</weblogic.client.version>
+        <weblogic.client.scope>provided</weblogic.client.scope>
 
     </properties>
 
@@ -69,6 +73,27 @@
             <version>3.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>${weblogic.client.groupId}</groupId>
+            <artifactId>${weblogic.client.artifactId}</artifactId>
+            <version>${weblogic.client.version}</version>
+            <scope>${weblogic.client.scope}</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.2.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.2.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.2.4</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -89,6 +114,7 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
 

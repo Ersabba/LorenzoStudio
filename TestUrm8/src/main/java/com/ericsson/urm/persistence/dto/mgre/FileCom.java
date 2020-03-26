@@ -1,26 +1,29 @@
 package com.ericsson.urm.persistence.dto.mgre;
 
 import javax.persistence.*;
+
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name="GRE_FILE_COM")
-public class FileCom {
+public class FileCom  implements Serializable {
+	private static final long serialVersionUID = 1L;
 
     @EmbeddedId
     private FileComId fileComId;
 
-    @Column(name="commOK",  length=30)
+    @Column(name="commOK")
     private String commOK;
 
-    @Column(name="commTOT",  length=30)
+    @Column(name="commTOT")
     private String commTOT;
 
-    @Column(name="commPer",  length=30)
+    @Column(name="commPer")
     private String commPer;
 
     @Temporal(TemporalType.DATE)
-    @Column(name="EXPORT_DATE",nullable=false)
+    @Column(name="EXPORT_DATE")
     private Date exportDate;
 
     public FileCom(){};
@@ -73,29 +76,59 @@ public class FileCom {
         this.exportDate = exportDate;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+	@Override
+	public String toString() {
+		return "FileCom [fileComId=" + fileComId + ", commOK=" + commOK + ", commTOT=" + commTOT + ", commPer="
+				+ commPer + ", exportDate=" + exportDate + "]";
+	}
 
-        FileCom fileCom = (FileCom) o;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((commOK == null) ? 0 : commOK.hashCode());
+		result = prime * result + ((commPer == null) ? 0 : commPer.hashCode());
+		result = prime * result + ((commTOT == null) ? 0 : commTOT.hashCode());
+		result = prime * result + ((exportDate == null) ? 0 : exportDate.hashCode());
+		result = prime * result + ((fileComId == null) ? 0 : fileComId.hashCode());
+		return result;
+	}
 
-        if (!getFileComId().equals(fileCom.getFileComId())) return false;
-        if (getCommOK() != null ? !getCommOK().equals(fileCom.getCommOK()) : fileCom.getCommOK() != null) return false;
-        if (getCommTOT() != null ? !getCommTOT().equals(fileCom.getCommTOT()) : fileCom.getCommTOT() != null)
-            return false;
-        if (getCommPer() != null ? !getCommPer().equals(fileCom.getCommPer()) : fileCom.getCommPer() != null)
-            return false;
-        return getExportDate().equals(fileCom.getExportDate());
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FileCom other = (FileCom) obj;
+		if (commOK == null) {
+			if (other.commOK != null)
+				return false;
+		} else if (!commOK.equals(other.commOK))
+			return false;
+		if (commPer == null) {
+			if (other.commPer != null)
+				return false;
+		} else if (!commPer.equals(other.commPer))
+			return false;
+		if (commTOT == null) {
+			if (other.commTOT != null)
+				return false;
+		} else if (!commTOT.equals(other.commTOT))
+			return false;
+		if (exportDate == null) {
+			if (other.exportDate != null)
+				return false;
+		} else if (!exportDate.equals(other.exportDate))
+			return false;
+		if (fileComId == null) {
+			if (other.fileComId != null)
+				return false;
+		} else if (!fileComId.equals(other.fileComId))
+			return false;
+		return true;
+	}
 
-    @Override
-    public int hashCode() {
-        int result = getFileComId().hashCode();
-        result = 31 * result + (getCommOK() != null ? getCommOK().hashCode() : 0);
-        result = 31 * result + (getCommTOT() != null ? getCommTOT().hashCode() : 0);
-        result = 31 * result + (getCommPer() != null ? getCommPer().hashCode() : 0);
-        result = 31 * result + getExportDate().hashCode();
-        return result;
-    }
 }

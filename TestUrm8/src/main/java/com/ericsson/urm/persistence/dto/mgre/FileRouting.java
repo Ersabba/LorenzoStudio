@@ -1,29 +1,32 @@
 package com.ericsson.urm.persistence.dto.mgre;
 
 import javax.persistence.*;
+
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name="GRE_FILE_ROU")
-public class FileRouting {
+public class FileRouting  implements Serializable {
+	private static final long serialVersionUID = 1L;
 
     @EmbeddedId
     private FileRoutingId fileRoutingId;
 
-    @Column(name="RIP1", length=30)
+    @Column(name="RIP1")
     private String rip1;
 
-    @Column(name="RIP2",  length=30)
+    @Column(name="RIP2")
     private String rip2;
 
-    @Column(name="RIP3", length=13)
+    @Column(name="RIP3")
     private String rip3;
 
-    @Column(name="RIP4",  length=30)
+    @Column(name="RIP4")
     private String rip4;
 
     @Temporal(TemporalType.DATE)
-    @Column(name="EXPORT_DATE",nullable=false)
+    @Column(name="EXPORT_DATE")
     private Date exportDate;
 
     public FileRouting(){};
@@ -85,41 +88,66 @@ public class FileRouting {
         this.exportDate = exportDate;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+	@Override
+	public String toString() {
+		return "FileRouting [fileRoutingId=" + fileRoutingId + ", rip1=" + rip1 + ", rip2=" + rip2 + ", rip3=" + rip3
+				+ ", rip4=" + rip4 + ", exportDate=" + exportDate + "]";
+	}
 
-        FileRouting that = (FileRouting) o;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((exportDate == null) ? 0 : exportDate.hashCode());
+		result = prime * result + ((fileRoutingId == null) ? 0 : fileRoutingId.hashCode());
+		result = prime * result + ((rip1 == null) ? 0 : rip1.hashCode());
+		result = prime * result + ((rip2 == null) ? 0 : rip2.hashCode());
+		result = prime * result + ((rip3 == null) ? 0 : rip3.hashCode());
+		result = prime * result + ((rip4 == null) ? 0 : rip4.hashCode());
+		return result;
+	}
 
-        if (!getFileRoutingId().equals(that.getFileRoutingId())) return false;
-        if (getRip1() != null ? !getRip1().equals(that.getRip1()) : that.getRip1() != null) return false;
-        if (getRip2() != null ? !getRip2().equals(that.getRip2()) : that.getRip2() != null) return false;
-        if (getRip3() != null ? !getRip3().equals(that.getRip3()) : that.getRip3() != null) return false;
-        if (getRip4() != null ? !getRip4().equals(that.getRip4()) : that.getRip4() != null) return false;
-        return getExportDate().equals(that.getExportDate());
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FileRouting other = (FileRouting) obj;
+		if (exportDate == null) {
+			if (other.exportDate != null)
+				return false;
+		} else if (!exportDate.equals(other.exportDate))
+			return false;
+		if (fileRoutingId == null) {
+			if (other.fileRoutingId != null)
+				return false;
+		} else if (!fileRoutingId.equals(other.fileRoutingId))
+			return false;
+		if (rip1 == null) {
+			if (other.rip1 != null)
+				return false;
+		} else if (!rip1.equals(other.rip1))
+			return false;
+		if (rip2 == null) {
+			if (other.rip2 != null)
+				return false;
+		} else if (!rip2.equals(other.rip2))
+			return false;
+		if (rip3 == null) {
+			if (other.rip3 != null)
+				return false;
+		} else if (!rip3.equals(other.rip3))
+			return false;
+		if (rip4 == null) {
+			if (other.rip4 != null)
+				return false;
+		} else if (!rip4.equals(other.rip4))
+			return false;
+		return true;
+	}
 
-    @Override
-    public int hashCode() {
-        int result = getFileRoutingId().hashCode();
-        result = 31 * result + (getRip1() != null ? getRip1().hashCode() : 0);
-        result = 31 * result + (getRip2() != null ? getRip2().hashCode() : 0);
-        result = 31 * result + (getRip3() != null ? getRip3().hashCode() : 0);
-        result = 31 * result + (getRip4() != null ? getRip4().hashCode() : 0);
-        result = 31 * result + getExportDate().hashCode();
-        return result;
-    }
 
-    @Override
-    public String toString() {
-        return "FileRouting{" +
-                "fileRoutingId=" + fileRoutingId +
-                ", rip1='" + rip1 + '\'' +
-                ", rip2='" + rip2 + '\'' +
-                ", rip3='" + rip3 + '\'' +
-                ", rip4='" + rip4 + '\'' +
-                ", exportDate=" + exportDate +
-                '}';
-    }
 }

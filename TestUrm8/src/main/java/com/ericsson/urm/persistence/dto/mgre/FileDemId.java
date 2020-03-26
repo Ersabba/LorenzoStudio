@@ -13,18 +13,14 @@ public class FileDemId implements Serializable{
     //default serial version id, required for serializable classes.
     private static final long serialVersionUID = 1L;
 
-/*    ACQ_DATE TIMESTAMP(6) NOT NULL,
-    COD_CONCENTRATORE VARCHAR2(13 BYTE) NOT NULL,
-    MTR VARCHAR2(30 BYTE) NOT NULL,*/
 
-    @Column(name="COD_CONCENTRATORE", nullable=false, length=13)
+    @Column(name="COD_CONCENTRATORE")
     private String codiceConcentratore;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="ACQ_DATE", nullable=false, length=13)
+    @Column(name="ACQ_DATE")
     private Date acquisitionDate;
 
-    @Column(name="MTR", nullable=false, length=30)
+    @Column(name="MTR")
     private String matricola;
 
     public FileDemId(){};
@@ -59,23 +55,48 @@ public class FileDemId implements Serializable{
         this.matricola = matricola;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+	@Override
+	public String toString() {
+		return "FileDemId [codiceConcentratore=" + codiceConcentratore + ", acquisitionDate=" + acquisitionDate
+				+ ", matricola=" + matricola + "]";
+	}
 
-        FileDemId that = (FileDemId) o;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((acquisitionDate == null) ? 0 : acquisitionDate.hashCode());
+		result = prime * result + ((codiceConcentratore == null) ? 0 : codiceConcentratore.hashCode());
+		result = prime * result + ((matricola == null) ? 0 : matricola.hashCode());
+		return result;
+	}
 
-        if (!getCodiceConcentratore().equals(that.getCodiceConcentratore())) return false;
-        if (!getAcquisitionDate().equals(that.getAcquisitionDate())) return false;
-        return getMatricola().equals(that.getMatricola());
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FileDemId other = (FileDemId) obj;
+		if (acquisitionDate == null) {
+			if (other.acquisitionDate != null)
+				return false;
+		} else if (!acquisitionDate.equals(other.acquisitionDate))
+			return false;
+		if (codiceConcentratore == null) {
+			if (other.codiceConcentratore != null)
+				return false;
+		} else if (!codiceConcentratore.equals(other.codiceConcentratore))
+			return false;
+		if (matricola == null) {
+			if (other.matricola != null)
+				return false;
+		} else if (!matricola.equals(other.matricola))
+			return false;
+		return true;
+	}
 
-    @Override
-    public int hashCode() {
-        int result = getCodiceConcentratore().hashCode();
-        result = 31 * result + getAcquisitionDate().hashCode();
-        result = 31 * result + getMatricola().hashCode();
-        return result;
-    }
+
 }

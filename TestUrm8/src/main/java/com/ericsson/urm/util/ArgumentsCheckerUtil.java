@@ -1,10 +1,10 @@
 package com.ericsson.urm.util;
 
-import com.ericsson.urm.StringConstants;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import com.ericsson.urm.StringConstants;
 
 public class ArgumentsCheckerUtil {
 

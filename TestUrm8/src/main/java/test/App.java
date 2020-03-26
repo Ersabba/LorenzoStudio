@@ -3,6 +3,8 @@ package test;
 import com.ericsson.gestionesw.persistence.dto.Trps;
 import com.ericsson.gestionesw.persistence.dto.TrpsId;
 import com.ericsson.gestionesw.persistence.dto.datatype.TipoUsoRel;
+import com.ericsson.mgre.enumeration.Provenienza;
+import com.ericsson.urm.exceptions.URMBusinessException;
 import com.ericsson.urm.persistence.HibernateSessionManagement;
 import com.ericsson.urm.persistence.OracleHibernateSessionManagement;
 import com.ericsson.urm.persistence.OracleHibernateSessionManagement2;
@@ -27,7 +29,10 @@ import com.ericsson.urm.persistence.dto.mgcf.Activity;
 import com.ericsson.urm.persistence.dto.mgcf.DeviceReachabilityStatus;
 import com.ericsson.urm.persistence.dto.mgcf.ReachabilityStatistic;
 import com.ericsson.urm.persistence.dto.mgre.*;
+import com.ericsson.urm.util.ArgumentsCheckerUtil;
+import com.ericsson.urm.util.DateUtil;
 import com.mysql.jdbc.JDBC4PreparedStatement;
+import org.apache.commons.lang3.mutable.MutableLong;
 
 import java.sql.*;
 import java.text.DateFormat;
@@ -36,6 +41,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class App {
 
@@ -491,7 +497,7 @@ public class App {
 
         OracleHibernateSessionManagement sm = new OracleHibernateSessionManagement();
 
-        StatsAcqFileCcsDAO statsAcqFileCcsDAO = new StatsAcqFileCcsDAO(sm);
+        /*StatsAcqFileCcsDAO statsAcqFileCcsDAO = new StatsAcqFileCcsDAO(sm);
 
         StatsAcqFileCcsId statsAcqFileCcsId = new StatsAcqFileCcsId(new Date(),"12345","FILENAME");
 
@@ -499,7 +505,17 @@ public class App {
 
         statsAcqFileCcsDAO.insert(statsAcqFileCcs);
 
-        statsAcqFileCcsDAO.closeTransaction();
+        statsAcqFileCcsDAO.closeTransaction();*/
+
+        LenntClienteDAO dao = new LenntClienteDAO(sm);
+
+        long numLennt=dao.getLenntNumberForInstantPunctualReadings(5,20,true);
+
+        System.out.println("Numero totale record:"+numLennt);
+
+        dao.closeTransaction();
+
+        storeReadingsNumAndNumLennt(new Date(),"CCS_TEST","FILE_TEST",0,0);
     }
 
     private static void passParameter1(long par1){
@@ -514,7 +530,7 @@ public class App {
 
     private static void passParameter3(AtomicLong par1){
 
-        par1.getAndAdd(1);
+        par1.incrementAndGet();
     }
 
     private static void passParameter4(String par1){
@@ -523,6 +539,16 @@ public class App {
 
         value++;
         par1=String.valueOf(value);
+    }
+
+    private static void passParameter5(AtomicReference<Provenienza> prov1){
+
+        prov1.set(Provenienza.CCS);
+    }
+
+    private static void passParameter6(MutableLong prov6){
+
+        prov6.increment();
     }
 
     public static void testPassingParameters(){
@@ -541,7 +567,7 @@ public class App {
 
         System.out.println("Parametro 2 Incrementato: "+test2);
 
-        AtomicLong test3=new AtomicLong(0);
+        AtomicLong test3=new AtomicLong(5);
 
         passParameter3(test3);
 
@@ -552,8 +578,49 @@ public class App {
         passParameter4(test4);
 
         System.out.println("Parametro 4 Incrementato: "+test4);
+
+        AtomicReference test5 = new AtomicReference<Provenienza>(Provenienza.DIR);
+
+        passParameter5(test5);
+
+        System.out.println("Parametro 5 Cambiato: "+test5.get().toString());
+
+        MutableLong test6=new MutableLong(0);
+
+        passParameter6(test6);
+
+        System.out.println("Parametro 6 Cambiato: "+test6);
     }
 
+    public static void storeReadingsNumAndNumLennt(Date acqDate, String idCCS, String fileName, long dbReadingsStored, long lenntNum)  {
 
+        ArgumentsCheckerUtil.checkNull(acqDate, "acqDate");
+        ArgumentsCheckerUtil.checkNull(fileName, "fileName");
+        ArgumentsCheckerUtil.checkString(idCCS, "idCCS");
+
+        OracleHibernateSessionManagement sm = null;
+        try {
+            sm = new OracleHibernateSessionManagement();
+            StatsAcqFileCcsDAO dao = new StatsAcqFileCcsDAO(sm);
+
+            StatsAcqFileCcsId id = new StatsAcqFileCcsId(DateUtil.azzeraHHMMSS(acqDate), idCCS, fileName);
+
+            StatsAcqFileCcs acq = dao.getById(id);
+
+            if(acq!=null){
+                acq.setNumMatricolePresenti(lenntNum);
+                acq.setNumReadings(dbReadingsStored);
+            }
+            else
+                acq = new StatsAcqFileCcs(id,dbReadingsStored,lenntNum,0,0,"");
+
+            dao.saveOrUpdate(acq);
+
+            dao.closeTransaction();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }

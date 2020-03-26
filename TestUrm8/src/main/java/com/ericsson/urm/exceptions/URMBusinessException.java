@@ -41,17 +41,17 @@ public class URMBusinessException extends Exception {
 		
 	}
 
-	public URMBusinessException(String arg0, int newType) {
+	public URMBusinessException(String arg0,int newType) {
 		super(arg0);
 		this.type=newType;
 	}
 
-	public URMBusinessException(Throwable arg0, int newType) {
+	public URMBusinessException(Throwable arg0,int newType) {
 		super(arg0);
 		this.type=newType;
 	}
 
-	public URMBusinessException(String arg0, Throwable arg1, int newType) {
+	public URMBusinessException(String arg0, Throwable arg1,int newType) {
 		super(arg0, arg1);
 		this.type=newType;
 	}

@@ -1,40 +1,47 @@
 package com.ericsson.urm.persistence.dto.mgre;
 
 import javax.persistence.*;
+
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name="GRE_FILE_ADD")
-public class FileAddress {
+public class FileAddress  implements Serializable {
+	private static final long serialVersionUID = 1L;
 
     @EmbeddedId
     private FileAddressId fileAddressId;
 
-    @Column(name="GRUPPO", length=30)
+    @Column(name="GRUPPO")
     private String gruppo;
 
-    @Column(name="PROGRESSIVO",  length=30)
+    @Column(name="PROGRESSIVO")
     private String progressivo;
 
-    @Column(name="FASE", length=13)
+    @Column(name="FASE")
     private String fase;
 
-    @Column(name="INDIRIZZO_HDLC",  length=30)
+    @Column(name="INDIRIZZO_HDLC")
     private String indirizzoHDLC;
 
-    @Column(name="DATA_ASSOCIAZIONELENNT",  length=30)
+    @Column(name="DATA_ASSOCIAZIONELENNT")
     private String dataAssociazioneLentt;
 
-    @Column(name="ORA_ASSOCIAZIONELENNT",  length=30)
+    @Column(name="ORA_ASSOCIAZIONELENNT")
     private String oraAssociazioneLentt;
 
     @Temporal(TemporalType.DATE)
     @Column(name="EXPORT_DATE")
-    private java.util.Date exportDate;
+    private Date exportDate;
+    
+    @Column(name="CARRIER")
+    private String carrier;
 
     public FileAddress(){};
 
-    public FileAddress(FileAddressId fileAddressId, String gruppo, String progressivo, String fase, String indirizzoHDLC, String dataAssociazioneLentt, String oraAssociazioneLentt, Date exportDate) {
+    public FileAddress(FileAddressId fileAddressId, String gruppo, String progressivo, String fase, String indirizzoHDLC, 
+    		String dataAssociazioneLentt, String oraAssociazioneLentt, Date exportDate, String carrier) {
         this.fileAddressId = fileAddressId;
         this.gruppo = gruppo;
         this.progressivo = progressivo;
@@ -43,6 +50,7 @@ public class FileAddress {
         this.dataAssociazioneLentt = dataAssociazioneLentt;
         this.oraAssociazioneLentt = oraAssociazioneLentt;
         this.exportDate = exportDate;
+        this.carrier = carrier;
     }
 
     public FileAddressId getFileAddressId() {
@@ -109,50 +117,94 @@ public class FileAddress {
         this.exportDate = exportDate;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof FileAddress)) return false;
+	public String getCarrier() {
+		return carrier;
+	}
 
-        FileAddress that = (FileAddress) o;
+	public void setCarrier(String carrier) {
+		this.carrier = carrier;
+	}
 
-        if (getFileAddressId() != null ? !getFileAddressId().equals(that.getFileAddressId()) : that.getFileAddressId() != null)
-            return false;
-        if (getGruppo() != null ? !getGruppo().equals(that.getGruppo()) : that.getGruppo() != null) return false;
-        if (getProgressivo() != null ? !getProgressivo().equals(that.getProgressivo()) : that.getProgressivo() != null)
-            return false;
-        if (getFase() != null ? !getFase().equals(that.getFase()) : that.getFase() != null) return false;
-        if (getIndirizzoHDLC() != null ? !getIndirizzoHDLC().equals(that.getIndirizzoHDLC()) : that.getIndirizzoHDLC() != null)
-            return false;
-        if (getDataAssociazioneLentt() != null ? !getDataAssociazioneLentt().equals(that.getDataAssociazioneLentt()) : that.getDataAssociazioneLentt() != null)
-            return false;
-        if (getOraAssociazioneLentt() != null ? !getOraAssociazioneLentt().equals(that.getOraAssociazioneLentt()) : that.getOraAssociazioneLentt() != null)
-            return false;
-        return getExportDate().equals(that.getExportDate());
-    }
+	@Override
+	public String toString() {
+		return "FileAddress [fileAddressId=" + fileAddressId + ", gruppo=" + gruppo + ", progressivo=" + progressivo
+				+ ", fase=" + fase + ", indirizzoHDLC=" + indirizzoHDLC + ", dataAssociazioneLentt="
+				+ dataAssociazioneLentt + ", oraAssociazioneLentt=" + oraAssociazioneLentt + ", exportDate="
+				+ exportDate + ", carrier=" + carrier + "]";
+	}
 
-    @Override
-    public int hashCode() {
-        int result = getFileAddressId() != null ? getFileAddressId().hashCode() : 0;
-        result = 31 * result + (getGruppo() != null ? getGruppo().hashCode() : 0);
-        result = 31 * result + (getProgressivo() != null ? getProgressivo().hashCode() : 0);
-        result = 31 * result + (getFase() != null ? getFase().hashCode() : 0);
-        result = 31 * result + (getIndirizzoHDLC() != null ? getIndirizzoHDLC().hashCode() : 0);
-        result = 31 * result + (getDataAssociazioneLentt() != null ? getDataAssociazioneLentt().hashCode() : 0);
-        result = 31 * result + (getOraAssociazioneLentt() != null ? getOraAssociazioneLentt().hashCode() : 0);
-        result = 31 * result + getExportDate().hashCode();
-        return result;
-    }
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((carrier == null) ? 0 : carrier.hashCode());
+		result = prime * result + ((dataAssociazioneLentt == null) ? 0 : dataAssociazioneLentt.hashCode());
+		result = prime * result + ((exportDate == null) ? 0 : exportDate.hashCode());
+		result = prime * result + ((fase == null) ? 0 : fase.hashCode());
+		result = prime * result + ((fileAddressId == null) ? 0 : fileAddressId.hashCode());
+		result = prime * result + ((gruppo == null) ? 0 : gruppo.hashCode());
+		result = prime * result + ((indirizzoHDLC == null) ? 0 : indirizzoHDLC.hashCode());
+		result = prime * result + ((oraAssociazioneLentt == null) ? 0 : oraAssociazioneLentt.hashCode());
+		result = prime * result + ((progressivo == null) ? 0 : progressivo.hashCode());
+		return result;
+	}
 
-    /*
-    GRUPPO VARCHAR2(30 BYTE),
-    PROGRESSIVO VARCHAR2(30 BYTE),
-    FASE VARCHAR2(30 BYTE),
-    INDIRIZZO_HDLC VARCHAR2(30 BYTE),
-    DATA_ASSOCIAZIONELENNT VARCHAR2(30 BYTE),
-    ORA_ASSOCIAZIONELENNT VARCHAR2(30 BYTE),,
-    EXPORT_DATE DATE NOT NULL,*/
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FileAddress other = (FileAddress) obj;
+		if (carrier == null) {
+			if (other.carrier != null)
+				return false;
+		} else if (!carrier.equals(other.carrier))
+			return false;
+		if (dataAssociazioneLentt == null) {
+			if (other.dataAssociazioneLentt != null)
+				return false;
+		} else if (!dataAssociazioneLentt.equals(other.dataAssociazioneLentt))
+			return false;
+		if (exportDate == null) {
+			if (other.exportDate != null)
+				return false;
+		} else if (!exportDate.equals(other.exportDate))
+			return false;
+		if (fase == null) {
+			if (other.fase != null)
+				return false;
+		} else if (!fase.equals(other.fase))
+			return false;
+		if (fileAddressId == null) {
+			if (other.fileAddressId != null)
+				return false;
+		} else if (!fileAddressId.equals(other.fileAddressId))
+			return false;
+		if (gruppo == null) {
+			if (other.gruppo != null)
+				return false;
+		} else if (!gruppo.equals(other.gruppo))
+			return false;
+		if (indirizzoHDLC == null) {
+			if (other.indirizzoHDLC != null)
+				return false;
+		} else if (!indirizzoHDLC.equals(other.indirizzoHDLC))
+			return false;
+		if (oraAssociazioneLentt == null) {
+			if (other.oraAssociazioneLentt != null)
+				return false;
+		} else if (!oraAssociazioneLentt.equals(other.oraAssociazioneLentt))
+			return false;
+		if (progressivo == null) {
+			if (other.progressivo != null)
+				return false;
+		} else if (!progressivo.equals(other.progressivo))
+			return false;
+		return true;
+	}
 
-
-
+   
 }
