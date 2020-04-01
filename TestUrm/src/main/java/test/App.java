@@ -137,9 +137,11 @@ public class App {
 
         updatePhaseMeters (parser169File,  target, acqDate );*/
 
-        testTimeZone();
+        //testTimeZone();
 
-        testQueryTasksJsp();
+        //testQueryTasksJsp();
+
+        testCurrentTime();
     }
 
     static public void  testReachability(){
@@ -937,5 +939,23 @@ public class App {
         System.out.println("Millisecondi dal 1970:"+millisec_2);
         Date expiry2 = new Date( millisec_2);
         System.out.println("Epoch Time: "+expiry2);// GMT+2
+    }
+
+    static public void testCurrentTime() {
+        Date newSyncDate = new Date();
+
+        System.out.println("Data Odierna:"+newSyncDate);
+
+        long datetimeSaved = newSyncDate.getTime();
+
+        TimeZone zone = TimeZone.getDefault();
+
+        // Contrary to its specification the meter needs to explicitly add
+        // DST to its clock even if it know that it is in DST
+        if (zone.inDaylightTime(new Date(datetimeSaved))) {
+            datetimeSaved += zone.getDSTSavings();
+        }
+
+        System.out.println("datetimeSaved:"+new Date(datetimeSaved));
     }
 }

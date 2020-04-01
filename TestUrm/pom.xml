@@ -95,6 +95,18 @@
             <version>3.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>weblogic</groupId>
+            <artifactId>wlfullclient</artifactId>
+            <version>10.3.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>struts</groupId>
+            <artifactId>struts</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+
     </dependencies>
 
     <build>
