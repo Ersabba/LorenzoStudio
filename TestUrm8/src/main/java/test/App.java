@@ -11,6 +11,7 @@ import com.ericsson.urm.persistence.OracleHibernateSessionManagement2;
 import com.ericsson.urm.persistence.RadiusHibernateSessionManagement;
 import com.ericsson.urm.persistence.core.dao.radius.RadiusDAO;
 import com.ericsson.urm.persistence.core.dao.readings.AcqMultipleFileDAO;
+import com.ericsson.urm.persistence.core.dao.readings.MonthlyMeasuresDAO;
 import com.ericsson.urm.persistence.core.dto.RadCheck;
 import com.ericsson.urm.persistence.core.dto.RadiusCMSInfoDTO;
 import com.ericsson.urm.persistence.core.dto.TestDto;
@@ -33,6 +34,7 @@ import com.ericsson.urm.util.ArgumentsCheckerUtil;
 import com.ericsson.urm.util.DateUtil;
 import com.mysql.jdbc.JDBC4PreparedStatement;
 import org.apache.commons.lang3.mutable.MutableLong;
+import org.hibernate.SQLQuery;
 
 import java.sql.*;
 import java.text.DateFormat;
@@ -124,7 +126,11 @@ public class App {
 
         //test_cr67();
 
-        testPassingParameters();
+        //testPassingParameters();
+
+        long numLennt = getLenntForMonthlyMeasuresPunctualSizeNoFilter();
+
+        System.out.println("Numero Lennt :"+numLennt);
     }
 
     static public void  testReachability(){
@@ -621,6 +627,28 @@ public class App {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static long getLenntForMonthlyMeasuresPunctualSizeNoFilter()  {
+
+        long nlennts=0;
+
+        OracleHibernateSessionManagement sm = null;
+        try {
+            sm = new OracleHibernateSessionManagement();
+            MonthlyMeasuresDAO dao = new MonthlyMeasuresDAO(sm);
+
+            //nlennts = dao.getLenntForMonthlyMeasuresPunctualSizeNoFilter();
+
+            nlennts=dao.getMonthlyMissingComponentMaxLennt();
+
+            dao.closeTransaction();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return nlennts;
     }
 
 }
