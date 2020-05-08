@@ -5,7 +5,7 @@
    <session-factory>
       <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
       <property name="hibernate.connection.url">jdbc:oracle:thin:@172.30.6.80:1521:svil</property>
-      <property name="hibernate.dialect">org.hibernate.dialect.Oracle12cDialect</property>
+      <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
       <property name="hibernate.connection.username">URMTEST5</property>
       <property name="hibernate.connection.password">URMTEST5</property>
       <property name="hibernate.current_session_context_class">thread</property>
@@ -43,6 +43,7 @@
       <mapping class="com.ericsson.urm.persistence.dto.mgre.FileRoutingId" />
       <mapping class="com.ericsson.urm.persistence.dto.mgre.FileRouting" />
        <mapping class="com.ericsson.urm.persistence.dto.mds.StatsAcqFileCcs" />
+       <mapping class="com.ericsson.gestionesw.persistence.dto.SincrCcs"/>
 
        <mapping resource="com/ericsson/urm/persistence/dto/mgcf/Activity.hbm.xml" />
        <mapping resource="com/ericsson/urm/persistence/dto/mgcf/RequestAssociation.hbm.xml" />

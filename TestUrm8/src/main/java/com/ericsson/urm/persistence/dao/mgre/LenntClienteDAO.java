@@ -560,7 +560,7 @@ public class LenntClienteDAO extends GenericDAO {
 		//restituisce una mappa con chiava il CCS e value un set di lennt sottesi a quel ccs
 		// NOTA : sono esclusi i lennt diretti perchè non vengono presi tramite file g.eea e non stanno nel file address
 
-		StringBuffer sb = new StringBuffer("select count(*) as total from (");
+		StringBuffer sb = new StringBuffer("select count(distinct matricola_lennt_cliente) as total from (");
 
 		sb.append(" SELECT 	lc.matricola_lennt_cliente ");
 		sb.append(" FROM 	gre_lennt_cliente lc inner join gre_lennt_type lt on lc.tipo = lt.lennt_type_id ");

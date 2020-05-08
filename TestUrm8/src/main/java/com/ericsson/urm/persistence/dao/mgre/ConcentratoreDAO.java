@@ -74,15 +74,16 @@ public class ConcentratoreDAO extends GenericDAO {
     	app.append(" select c.cod_concentratore as cod_concentratore from concentratore c");
 		app.append(" where c.ip_vpn is not null");
 		NATIVE_QUERY_IP_NOT_NULL = app.toString();
-		
+
 		app = new StringBuffer();
 		app.append(" select a.cod_concentratore as cod_concentratore  from concentratore a ");
 		app.append(" where a.ip_vpn is not null ");
-		app.append(" minus "); 
-		app.append(" select b.mtrccs as cod_concentratore from gre_sincr_ccs b ");
+		app.append(" minus ");
+		app.append(" select distinct(b.mtrccs) as cod_concentratore from gre_sincr_ccs b ");
 		app.append(" where (trunc(sysdate) - trunc(b.datasincr)) < :daysRequired ");
+		app.append(" 		and esito='SUCCESS'");
 		NATIVE_QUERY_SYNCHRONIZE_CCS = app.toString();
-		
+
 		app = new StringBuffer();
 		app.append(" select t1.cod_concentratore                                ");
 		app.append("   from gre_concentratore t1                                ");

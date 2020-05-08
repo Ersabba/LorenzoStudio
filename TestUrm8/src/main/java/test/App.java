@@ -1,5 +1,6 @@
 package test;
 
+import com.ericsson.gestionesw.persistence.dto.SincrCcs;
 import com.ericsson.gestionesw.persistence.dto.Trps;
 import com.ericsson.gestionesw.persistence.dto.TrpsId;
 import com.ericsson.gestionesw.persistence.dto.datatype.TipoUsoRel;
@@ -15,6 +16,7 @@ import com.ericsson.urm.persistence.core.dao.readings.MonthlyMeasuresDAO;
 import com.ericsson.urm.persistence.core.dto.RadCheck;
 import com.ericsson.urm.persistence.core.dto.RadiusCMSInfoDTO;
 import com.ericsson.urm.persistence.core.dto.TestDto;
+import com.ericsson.urm.persistence.dao.gestionesw.SincrCcsDAO;
 import com.ericsson.urm.persistence.dao.gestionesw.TrpsDAO;
 import com.ericsson.urm.persistence.dao.mds.AcqFileCcsDAO;
 import com.ericsson.urm.persistence.dao.mds.StatsAcqFileCcsDAO;
@@ -128,9 +130,11 @@ public class App {
 
         //testPassingParameters();
 
-        long numLennt = getLenntForMonthlyMeasuresPunctualSizeNoFilter();
+        //long numLennt = getLenntForMonthlyMeasuresPunctualSizeNoFilter();
 
-        System.out.println("Numero Lennt :"+numLennt);
+        //System.out.println("Numero Lennt :"+numLennt);
+
+        testTableGreSincrCCS();
     }
 
     static public void  testReachability(){
@@ -521,7 +525,7 @@ public class App {
 
         dao.closeTransaction();
 
-        storeReadingsNumAndNumLennt(new Date(),"CCS_TEST","FILE_TEST",0,0);
+        //storeReadingsNumAndNumLennt(new Date(),"CCS_TEST","FILE_TEST",0,0);
     }
 
     private static void passParameter1(long par1){
@@ -649,6 +653,33 @@ public class App {
         }
 
         return nlennts;
+    }
+
+    public static void testTableGreSincrCCS(){
+
+        OracleHibernateSessionManagement sm = null;
+        try {
+            sm = new OracleHibernateSessionManagement();
+            SincrCcsDAO dao = new SincrCcsDAO(sm);
+
+            SincrCcs sincrCcs = new SincrCcs("matricolaCcs", "0.0.0.0", "TestRelease", new Date(), new Date(),true);
+
+            dao.saveOrUpdate(sincrCcs);
+
+            SincrCcs sincrCcs1=dao.getLastCcsSyncronization("matricolaCcs");
+
+            System.out.println("Ultima sincronizzazione: "+sincrCcs1);
+
+            ConcentratoreDAO dao1 = new ConcentratoreDAO(sm);
+
+            dao1.getReqSynchrCcsList(500);
+
+            dao.closeTransaction();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 }

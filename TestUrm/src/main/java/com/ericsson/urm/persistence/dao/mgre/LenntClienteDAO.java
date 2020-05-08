@@ -408,7 +408,64 @@ public class LenntClienteDAO extends GenericDAO {
 				return metersCCsMap;
 
 	}
-	
+
+	public long getLenntNumberForInstantPunctualReadings(long gAnag, long gVet, boolean useAlternativeCcs){
+
+		//estrae il numero di lennt raggiungibili tramite CCS per i quali non esistono letture in gre_tot_atta_ass prima di sysdate - gVet
+		// e che risultavano nel file address del concentratore dopo la data sysdate - gAnag
+		//restituisce una mappa con chiava il CCS e value un set di lennt sottesi a quel ccs
+		// NOTA : sono esclusi i lennt diretti perchè non vengono presi tramite file g.eea e non stanno nel file address
+
+		StringBuffer sb = new StringBuffer("select count(*) as total from (");
+
+		sb.append(" SELECT 	lc.matricola_lennt_cliente ");
+		sb.append(" FROM 	gre_lennt_cliente lc inner join gre_lennt_type lt on lc.tipo = lt.lennt_type_id ");
+		sb.append(" 		WHERE to_char(lc.ULTIMO_CONTATTO_ADD, 'YYYYMMDD')  >= to_char(sysdate - :gAnag, 'YYYYMMDD')    ");
+		sb.append(" 		AND lc.cod_concentratore is not null  and lt.protocol<>'LANDIS_BT_LENNT_DIRECT'   and lc.Tipo<>'TBD' ");
+		sb.append(" 		AND not exists (select 1 from gre_tot_att_ass tot    ");
+		sb.append(" 						where tot.matricola_lennt_cliente=lc.matricola_lennt_cliente and to_char(tot.data_ril, 'YYYYMMDD') >= to_char(sysdate - :gVet, 'YYYYMMDD'))   ");
+		sb.append(" 		AND exists (select 1 from gre_ip_gateway ip    ");
+		sb.append(" 					where ip.ip_address is not null    ");
+		sb.append(" 					and ip.gateway_code=lc.cod_concentratore) ");
+
+		if(useAlternativeCcs){
+			sb.append(" UNION ");
+
+			sb.append(" SELECT 	lc.matricola_lennt_cliente ");
+			sb.append(" FROM 	gre_lennt_cliente lc inner join gre_lennt_type lt on lc.tipo = lt.lennt_type_id  ");
+			sb.append(" 		WHERE to_char(lc.ULTIMO_CONTATTO_ADD, 'YYYYMMDD')  >= to_char(sysdate - :gAnag, 'YYYYMMDD')    ");
+			sb.append(" 		AND lc.cod_concentratore2 is not null   and lt.protocol<>'LANDIS_BT_LENNT_DIRECT'   and lc.Tipo<>'TBD' ");
+			sb.append(" 		AND not exists (select 1 from gre_tot_att_ass tot    ");
+			sb.append(" 						where tot.matricola_lennt_cliente=lc.matricola_lennt_cliente and to_char(tot.data_ril, 'YYYYMMDD') >= to_char(sysdate - :gVet, 'YYYYMMDD'))   ");
+			sb.append(" 		AND exists (select 1 from gre_ip_gateway ip    ");
+			sb.append(" 				    where ip.ip_address is not null    ");
+			sb.append(" 			and ip.gateway_code=lc.cod_concentratore2) ");
+
+			sb.append(" UNION ");
+
+			sb.append(" SELECT lc.matricola_lennt_cliente");
+			sb.append(" FROM gre_lennt_cliente lc inner join gre_lennt_type lt on lc.tipo = lt.lennt_type_id   ");
+			sb.append(" 	 WHERE to_char(lc.ULTIMO_CONTATTO_ADD, 'YYYYMMDD')  >= to_char(sysdate - :gAnag, 'YYYYMMDD')    ");
+			sb.append(" 	 AND lc.cod_concentratore3 is not null   and lt.protocol<>'LANDIS_BT_LENNT_DIRECT'   and lc.Tipo<>'TBD' ");
+			sb.append(" 	 AND not exists (select 1 from gre_tot_att_ass tot    ");
+			sb.append(" 					 where tot.matricola_lennt_cliente=lc.matricola_lennt_cliente and to_char(tot.data_ril, 'YYYYMMDD') >= to_char(sysdate - :gVet, 'YYYYMMDD'))   ");
+			sb.append(" 	 AND exists (select 1 from gre_ip_gateway ip    ");
+			sb.append(" 				 where ip.ip_address is not null    ");
+			sb.append(" 		 and ip.gateway_code=lc.cod_concentratore3) ");
+		}
+		sb.append(" )");
+
+		logger.debug("Estrazione Numero lennt per lettura instantanea giornaliera (useAlternativeCcs="+useAlternativeCcs+" - sql: " + sb.toString() );
+
+		SQLQuery qry = getSession().createSQLQuery(sb.toString());
+		qry.addScalar("total", new org.hibernate.type.LongType());
+		qry.setLong("gAnag", gAnag);
+		qry.setLong("gVet", gVet);
+
+		Long total = (Long)qry.uniqueResult();
+
+		return total!=null?total.longValue():0;
+	}
 	
 	public List<String> getLenntsByConcentratoreDaBonificare(String codConcentratore, Date dataIniziale, boolean ingoraDataIniziale) {
 		ArgumentsCheckerUtil.checkNull(codConcentratore, "codConcentratore");
