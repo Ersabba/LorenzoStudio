@@ -1,43 +1,31 @@
 package test;
 
 import com.ericsson.gestionesw.persistence.dto.SincrCcs;
-import com.ericsson.gestionesw.persistence.dto.Trps;
-import com.ericsson.gestionesw.persistence.dto.TrpsId;
-import com.ericsson.gestionesw.persistence.dto.datatype.TipoUsoRel;
 import com.ericsson.mgre.enumeration.Provenienza;
-import com.ericsson.urm.exceptions.URMBusinessException;
-import com.ericsson.urm.persistence.HibernateSessionManagement;
 import com.ericsson.urm.persistence.OracleHibernateSessionManagement;
-import com.ericsson.urm.persistence.OracleHibernateSessionManagement2;
-import com.ericsson.urm.persistence.RadiusHibernateSessionManagement;
-import com.ericsson.urm.persistence.core.dao.radius.RadiusDAO;
 import com.ericsson.urm.persistence.core.dao.readings.AcqMultipleFileDAO;
 import com.ericsson.urm.persistence.core.dao.readings.MonthlyMeasuresDAO;
-import com.ericsson.urm.persistence.core.dto.RadCheck;
-import com.ericsson.urm.persistence.core.dto.RadiusCMSInfoDTO;
-import com.ericsson.urm.persistence.core.dto.TestDto;
 import com.ericsson.urm.persistence.dao.gestionesw.SincrCcsDAO;
-import com.ericsson.urm.persistence.dao.gestionesw.TrpsDAO;
-import com.ericsson.urm.persistence.dao.mds.AcqFileCcsDAO;
+import com.ericsson.urm.persistence.dao.gestionesw.StatConnCcsDAO;
 import com.ericsson.urm.persistence.dao.mds.StatsAcqFileCcsDAO;
 import com.ericsson.urm.persistence.dao.mgcf.ActivityDAO;
-import com.ericsson.urm.persistence.dao.mgcf.DeviceReachabilityDAO;
-import com.ericsson.urm.persistence.dao.mgcf.ReachabilityStatusDAO;
 import com.ericsson.urm.persistence.dao.mgre.*;
-import com.ericsson.urm.persistence.dto.mds.AcqFileCcs;
-import com.ericsson.urm.persistence.dto.mds.AcqFileCcsId;
 import com.ericsson.urm.persistence.dto.mds.StatsAcqFileCcs;
 import com.ericsson.urm.persistence.dto.mds.StatsAcqFileCcsId;
 import com.ericsson.urm.persistence.dto.mgcf.Activity;
-import com.ericsson.urm.persistence.dto.mgcf.DeviceReachabilityStatus;
-import com.ericsson.urm.persistence.dto.mgcf.ReachabilityStatistic;
-import com.ericsson.urm.persistence.dto.mgre.*;
 import com.ericsson.urm.util.ArgumentsCheckerUtil;
 import com.ericsson.urm.util.DateUtil;
-import com.mysql.jdbc.JDBC4PreparedStatement;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.mutable.MutableLong;
-import org.hibernate.SQLQuery;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.config.ConfigurationSource;
+import org.apache.logging.log4j.core.config.Configurator;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -46,6 +34,7 @@ import java.util.*;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
 
 public class App {
 
@@ -657,14 +646,53 @@ public class App {
 
     public static void testTableGreSincrCCS(){
 
+
         OracleHibernateSessionManagement sm = null;
         try {
+
+            System.out.println("Passo 1");
+
+            String propertiesFile = "config/Mylog4j2.properties";
+            ConfigurationSource source = new ConfigurationSource(new FileInputStream(propertiesFile), new File(propertiesFile));
+            Configurator.initialize(null, source);
+
+            System.out.println("Passo 1");
+
+            Logger mylogger = LogManager.getLogger("com.ericsson.urm.log.ccs.readings.file");
+
+            System.out.println("Passo 2 ");
+
+            mylogger.info("Inizio metodo");
+
+            String args[] = {"1","12","123","1234","12345"};
+
+            int maxLen = Arrays.stream(args).mapToInt(s -> s.length()).max().orElse(0);
+
+            String logMessage = Arrays.stream(args).map(s -> StringUtils.rightPad(s,maxLen)).collect(Collectors.joining(" "));
+
+            mylogger.info(logMessage);
+
+            String args2[] = {"12345","1234","123","12","1"};
+
+            int maxLen2 = Arrays.stream(args2).mapToInt(s -> s.length()).max().orElse(0);
+
+            logMessage = Arrays.stream(args2).map(s -> StringUtils.rightPad(s,maxLen2)).collect(Collectors.joining(" "));
+
+            String args3[] = {"","","","","1"};
+
+            int maxLen3 = Arrays.stream(args3).mapToInt(s -> s.length()).max().orElse(0);
+
+            logMessage = Arrays.stream(args3).map(s -> StringUtils.rightPad(s,maxLen3)).collect(Collectors.joining(" "));
+
+            mylogger.info(logMessage);
+
             sm = new OracleHibernateSessionManagement();
             SincrCcsDAO dao = new SincrCcsDAO(sm);
 
+
             SincrCcs sincrCcs = new SincrCcs("matricolaCcs", "0.0.0.0", "TestRelease", new Date(), new Date(),true);
 
-            dao.saveOrUpdate(sincrCcs);
+            //dao.saveOrUpdate(sincrCcs);
 
             SincrCcs sincrCcs1=dao.getLastCcsSyncronization("matricolaCcs");
 
@@ -674,9 +702,17 @@ public class App {
 
             dao1.getReqSynchrCcsList(500);
 
+            StatConnCcsDAO dao2 = new StatConnCcsDAO(sm);
+
+            //dao2.incrementNumPostHttp("increment");
+
             dao.closeTransaction();
 
-        } catch (Exception e) {
+            mylogger.info("Fine metodo");
+
+            System.out.println("Fine metodo");
+
+        } catch (Throwable e) {
             e.printStackTrace();
         }
 
