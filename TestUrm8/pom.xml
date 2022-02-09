@@ -12,7 +12,7 @@
 
         <hibernate.groupId>org.hibernate</hibernate.groupId>
         <hibernate.artifactId>hibernate-core</hibernate.artifactId>
-        <hibernate.version>5.1.17.Final</hibernate.version>
+        <hibernate.version>5.4.24.Final</hibernate.version>
         <hibernate.scope>compile</hibernate.scope>
 
         <!-- Driver Oracle jdbc compatibile con java 8 che non tronca le parte temporale della data-->
